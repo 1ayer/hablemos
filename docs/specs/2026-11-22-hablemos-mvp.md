@@ -1,7 +1,7 @@
 # hablemos MVP 계획·명세
 
 - 작성일: 2026-11-22
-- 상태: 독립 리뷰 3건(sol·opus·neon) 반영본, 사용자 승인 대기
+- 상태: 독립 리뷰 3건(sol·opus·neon) 반영, 승인 후 M1~M6 구현 완료
 - 저장소: `hablemos` (GitHub Pages로 배포)
 
 ## 1. 목표
