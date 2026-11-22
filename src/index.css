@@ -275,3 +275,6 @@ p { margin: 0; }
 .fix { margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--field); font-size: 0.92rem; }
 .composer { display: flex; flex-direction: column; gap: 8px; position: sticky; bottom: 0; background: var(--bg); padding: 8px 0 4px; }
 .chat-full { display: flex; flex-direction: column; gap: 10px; }
+.file-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; cursor: pointer; }
+.file-btn:has(input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 2px; }
+.banner.info { background: var(--accent-soft); }

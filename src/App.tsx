@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { registerSW } from 'virtual:pwa-register'
 import Chat from './Chat'
 import { lessons, units, type ExerciseType, type Item, type Lesson } from './content'
 import LessonView from './LessonView'
@@ -10,7 +11,7 @@ import { normalize } from './lib/grade'
 import type { Session } from './lib/lesson'
 import { canRecognize, pickVoice, type Voice } from './lib/speech'
 import { dueIds, missItem, registerItems, reviewCard, upcomingIds } from './lib/srs'
-import { STATE_KEY, initialState, load, save, type State } from './lib/state'
+import { STATE_KEY, initialState, load, save, validate, type State } from './lib/state'
 
 type Kind = 'lesson' | 'review' | 'practice' | 'ai'
 type Screen =
@@ -53,10 +54,13 @@ export default function App() {
   const [micBlocked, setMicBlocked] = useState(false)
   const [apiKey, setApiKey] = useState(() => storage().getItem(KEY_STORAGE) ?? '')
   const [online, setOnline] = useState(navigator.onLine)
+  const [offlineReady, setOfflineReady] = useState(false)
   const aiRequest = useRef(0)
 
   useEffect(() => {
     pickVoice().then(setVoice)
+    // Fires once, when the service worker has cached the app for the first time.
+    registerSW({ onOfflineReady: () => setOfflineReady(true) })
   }, [])
 
   useEffect(() => setSaveFailed(!save(storage(), state)), [state])
@@ -97,6 +101,12 @@ export default function App() {
         <div className="banner" role="alert">
           <p>저장된 진도를 읽지 못해 처음부터 시작합니다. 읽지 못한 기록은 따로 보관했습니다.</p>
           <button type="button" onClick={() => setRecovered(false)}>닫기</button>
+        </div>
+      )}
+      {offlineReady && (
+        <div className="banner info" role="status">
+          <p>이제 인터넷 연결 없이도 레슨과 복습을 할 수 있습니다.</p>
+          <button type="button" onClick={() => setOfflineReady(false)}>닫기</button>
         </div>
       )}
       {saveFailed && (
@@ -160,6 +170,24 @@ export default function App() {
           })
         }
         onReset={() => setState((s) => ({ ...initialState(), settings: s.settings }))}
+        onExport={() => {
+          const url = URL.createObjectURL(new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' }))
+          const a = Object.assign(document.createElement('a'), { href: url, download: `hablemos-progress-${today}.json` })
+          a.click()
+          URL.revokeObjectURL(url)
+        }}
+        onImport={(text) => {
+          let parsed: unknown
+          try {
+            parsed = JSON.parse(text)
+          } catch {
+            return '파일을 읽지 못했습니다. hablemos에서 내보낸 JSON 파일인지 확인하세요.'
+          }
+          const next = validate(parsed)
+          if (!next) return '진도 파일 형식이 맞지 않아 가져오지 않았습니다. 지금 진도는 그대로입니다.'
+          setState(next)
+          return null
+        }}
         onBack={goHome}
       />
     )
@@ -283,7 +311,7 @@ export default function App() {
 
       {audioOn && voice === null && <p className="voice-note muted">이 기기에 스페인어 음성이 없어 듣기 문제는 내지 않습니다.</p>}
       {audioOn && voice && !voice.exact && (
-        <p className="voice-note muted">스페인(es-ES) 음성이 없어 다른 스페인어 음성({voice.voice.lang})으로 읽습니다.</p>
+        <p className="voice-note muted">스페인 음성이 없어 다른 지역의 스페인어 음성으로 읽습니다.</p>
       )}
 
       {due.length > 0 && (

@@ -8,48 +8,230 @@
         "id": "u1-l1",
         "title": "인사",
         "items": [
-          { "id": "u1-l1-01", "es": "Hola", "ko": "안녕", "note": "하루 중 언제든 쓰는 가벼운 인사입니다. h는 소리 내지 않습니다." },
-          { "id": "u1-l1-02", "es": "Buenos días", "ko": "안녕하세요 (아침 인사)", "note": "점심 전까지 씁니다. días는 복수형입니다." },
-          { "id": "u1-l1-03", "es": "Buenas tardes", "ko": "안녕하세요 (오후 인사)", "note": "스페인에서는 점심(14~15시) 뒤부터 저녁 9시쯤까지 씁니다." },
-          { "id": "u1-l1-04", "es": "Buenas noches", "ko": "안녕하세요 (밤 인사)", "note": "밤에 만날 때도, 헤어지거나 자러 갈 때도 씁니다." },
-          { "id": "u1-l1-05", "es": "Adiós", "ko": "잘 가" },
-          { "id": "u1-l1-06", "es": "Hasta luego", "ko": "나중에 봐", "note": "스페인에서는 그날 다시 안 만나도 헤어질 때 흔히 씁니다." },
-          { "id": "u1-l1-07", "es": "Hasta mañana", "ko": "내일 봐", "note": "ñ는 '냐' 소리에 가깝습니다." },
-          { "id": "u1-l1-08", "es": "Gracias", "ko": "고마워", "note": "스페인 발음에서 c(e, i 앞)는 영어 th처럼 혀를 내밀어 [θ]로 냅니다." },
-          { "id": "u1-l1-09", "es": "Muchas gracias", "ko": "정말 고마워" },
-          { "id": "u1-l1-10", "es": "De nada", "ko": "천만에" }
+          {
+            "id": "u1-l1-01",
+            "es": "Hola",
+            "ko": "안녕",
+            "note": "하루 중 언제든 쓰는 가벼운 인사입니다. h는 소리 내지 않습니다."
+          },
+          {
+            "id": "u1-l1-02",
+            "es": "Buenos días",
+            "ko": "안녕하세요 (아침 인사)",
+            "note": "점심 전까지 씁니다. días는 복수형입니다."
+          },
+          {
+            "id": "u1-l1-03",
+            "es": "Buenas tardes",
+            "ko": "안녕하세요 (오후 인사)",
+            "note": "스페인에서는 점심(14~15시) 뒤부터 저녁 9시쯤까지 씁니다."
+          },
+          {
+            "id": "u1-l1-04",
+            "es": "Buenas noches",
+            "ko": "안녕하세요 (밤 인사)",
+            "note": "밤에 만날 때도, 헤어지거나 자러 갈 때도 씁니다."
+          },
+          {
+            "id": "u1-l1-05",
+            "es": "Adiós",
+            "ko": "잘 가"
+          },
+          {
+            "id": "u1-l1-06",
+            "es": "Hasta luego",
+            "ko": "나중에 봐",
+            "note": "스페인에서는 그날 다시 안 만나도 헤어질 때 흔히 씁니다."
+          },
+          {
+            "id": "u1-l1-07",
+            "es": "Hasta mañana",
+            "ko": "내일 봐",
+            "note": "ñ는 '냐' 소리에 가깝습니다."
+          },
+          {
+            "id": "u1-l1-08",
+            "es": "Gracias",
+            "ko": "고마워",
+            "note": "스페인 발음에서 c(e, i 앞)는 영어 th처럼 혀를 내밀어 [θ]로 냅니다."
+          },
+          {
+            "id": "u1-l1-09",
+            "es": "Muchas gracias",
+            "ko": "정말 고마워"
+          },
+          {
+            "id": "u1-l1-10",
+            "es": "De nada",
+            "ko": "천만에"
+          }
         ]
       },
       {
         "id": "u1-l2",
         "title": "안부 묻기",
         "items": [
-          { "id": "u1-l2-01", "es": "¿Qué tal?", "ko": "잘 지내?", "accept_es": ["¿Cómo estás?"], "note": "가볍게 안부를 묻는 말입니다. 물음표는 문장 앞에 거꾸로(¿)도 씁니다." },
-          { "id": "u1-l2-02", "es": "¿Cómo estás?", "ko": "어떻게 지내?", "accept_es": ["¿Qué tal?", "¿Cómo estás tú?"], "note": "estás는 tú(너)에 맞춘 형태입니다." },
-          { "id": "u1-l2-03", "es": "¿Cómo está usted?", "ko": "어떻게 지내세요?", "accept_es": ["¿Cómo está?"], "note": "usted는 존댓말 '당신'이고, 동사는 3인칭 형태(está)를 씁니다." },
-          { "id": "u1-l2-04", "es": "Bien, gracias", "ko": "잘 지내, 고마워", "accept_es": ["Muy bien, gracias", "Estoy bien, gracias"] },
-          { "id": "u1-l2-05", "es": "Muy bien", "ko": "아주 좋아" },
-          { "id": "u1-l2-06", "es": "Más o menos", "ko": "그럭저럭" },
-          { "id": "u1-l2-07", "es": "¿Y tú?", "ko": "너는?" },
-          { "id": "u1-l2-08", "es": "¿Y usted?", "ko": "당신은요?" },
-          { "id": "u1-l2-09", "es": "Estoy cansado", "ko": "나 피곤해 (남성)", "accept_es": ["Yo estoy cansado"], "note": "여성은 cansada라고 합니다. 형용사가 주어의 성을 따릅니다." },
-          { "id": "u1-l2-10", "es": "Estoy cansada", "ko": "나 피곤해 (여성)", "accept_es": ["Yo estoy cansada"] }
+          {
+            "id": "u1-l2-01",
+            "es": "¿Qué tal?",
+            "ko": "잘 지내?",
+            "accept_es": [
+              "¿Cómo estás?"
+            ],
+            "note": "가볍게 안부를 묻는 말입니다. 물음표는 문장 앞에 거꾸로(¿)도 씁니다."
+          },
+          {
+            "id": "u1-l2-02",
+            "es": "¿Cómo estás?",
+            "ko": "어떻게 지내?",
+            "accept_es": [
+              "¿Qué tal?",
+              "¿Cómo estás tú?"
+            ],
+            "note": "estás는 tú(너)에 맞춘 형태입니다."
+          },
+          {
+            "id": "u1-l2-03",
+            "es": "¿Cómo está usted?",
+            "ko": "어떻게 지내세요?",
+            "accept_es": [
+              "¿Cómo está?"
+            ],
+            "note": "usted는 존댓말 '당신'이고, 동사는 3인칭 형태(está)를 씁니다."
+          },
+          {
+            "id": "u1-l2-04",
+            "es": "Bien, gracias",
+            "ko": "잘 지내, 고마워",
+            "accept_es": [
+              "Muy bien, gracias",
+              "Estoy bien, gracias"
+            ]
+          },
+          {
+            "id": "u1-l2-05",
+            "es": "Muy bien",
+            "ko": "아주 좋아"
+          },
+          {
+            "id": "u1-l2-06",
+            "es": "Más o menos",
+            "ko": "그럭저럭"
+          },
+          {
+            "id": "u1-l2-07",
+            "es": "¿Y tú?",
+            "ko": "너는?"
+          },
+          {
+            "id": "u1-l2-08",
+            "es": "¿Y usted?",
+            "ko": "당신은요?"
+          },
+          {
+            "id": "u1-l2-09",
+            "es": "Estoy cansado",
+            "ko": "나 피곤해 (남성)",
+            "accept_es": [
+              "Yo estoy cansado"
+            ],
+            "note": "여성은 cansada라고 합니다. 형용사가 주어의 성을 따릅니다."
+          },
+          {
+            "id": "u1-l2-10",
+            "es": "Estoy cansada",
+            "ko": "나 피곤해 (여성)",
+            "accept_es": [
+              "Yo estoy cansada"
+            ]
+          }
         ]
       },
       {
         "id": "u1-l3",
         "title": "자기소개",
         "items": [
-          { "id": "u1-l3-01", "es": "Me llamo Ana", "ko": "내 이름은 아나야", "accept_es": ["Yo me llamo Ana", "Soy Ana"], "note": "llamarse는 '~라고 불리다'라는 뜻입니다. ll은 스페인에서 대개 '야' 소리로 냅니다." },
-          { "id": "u1-l3-02", "es": "¿Cómo te llamas?", "ko": "너 이름이 뭐야?", "accept_es": ["¿Cómo te llamas tú?"] },
-          { "id": "u1-l3-03", "es": "¿Cómo se llama usted?", "ko": "성함이 어떻게 되세요?", "accept_es": ["¿Cómo se llama?"] },
-          { "id": "u1-l3-04", "es": "Soy de Corea", "ko": "나는 한국 출신이야", "accept_es": ["Yo soy de Corea", "Soy de Corea del Sur"], "note": "출신은 ser de로 말합니다." },
-          { "id": "u1-l3-05", "es": "¿De dónde eres?", "ko": "너는 어디 출신이야?", "accept_es": ["¿De dónde eres tú?"] },
-          { "id": "u1-l3-06", "es": "Soy de Madrid", "ko": "나는 마드리드 출신이야", "accept_es": ["Yo soy de Madrid"] },
-          { "id": "u1-l3-07", "es": "Encantado", "ko": "만나서 반가워 (남성)", "note": "여성은 Encantada라고 합니다." },
-          { "id": "u1-l3-08", "es": "Encantada", "ko": "만나서 반가워 (여성)" },
-          { "id": "u1-l3-09", "es": "Soy estudiante", "ko": "나는 학생이야", "accept_es": ["Yo soy estudiante"], "note": "직업을 말할 때는 관사(un, una)를 붙이지 않습니다." },
-          { "id": "u1-l3-10", "es": "Hablo un poco de español", "ko": "나는 스페인어를 조금 해", "accept_es": ["Hablo un poco español", "Yo hablo un poco de español"] }
+          {
+            "id": "u1-l3-01",
+            "es": "Me llamo Ana",
+            "ko": "내 이름은 아나야",
+            "accept_es": [
+              "Yo me llamo Ana",
+              "Soy Ana"
+            ],
+            "note": "llamarse는 '~라고 불리다'라는 뜻입니다. ll은 스페인에서 대개 '야' 소리로 냅니다."
+          },
+          {
+            "id": "u1-l3-02",
+            "es": "¿Cómo te llamas?",
+            "ko": "너 이름이 뭐야?",
+            "accept_es": [
+              "¿Cómo te llamas tú?"
+            ]
+          },
+          {
+            "id": "u1-l3-03",
+            "es": "¿Cómo se llama usted?",
+            "ko": "성함이 어떻게 되세요?",
+            "accept_es": [
+              "¿Cómo se llama?"
+            ]
+          },
+          {
+            "id": "u1-l3-04",
+            "es": "Soy de Corea",
+            "ko": "나는 한국 출신이야",
+            "accept_es": [
+              "Yo soy de Corea",
+              "Soy de Corea del Sur"
+            ],
+            "note": "출신은 ser de로 말합니다."
+          },
+          {
+            "id": "u1-l3-05",
+            "es": "¿De dónde eres?",
+            "ko": "너는 어디 출신이야?",
+            "accept_es": [
+              "¿De dónde eres tú?"
+            ]
+          },
+          {
+            "id": "u1-l3-06",
+            "es": "Soy de Madrid",
+            "ko": "나는 마드리드 출신이야",
+            "accept_es": [
+              "Yo soy de Madrid"
+            ]
+          },
+          {
+            "id": "u1-l3-07",
+            "es": "Encantado",
+            "ko": "만나서 반가워 (남성)",
+            "note": "여성은 Encantada라고 합니다."
+          },
+          {
+            "id": "u1-l3-08",
+            "es": "Encantada",
+            "ko": "만나서 반가워 (여성)"
+          },
+          {
+            "id": "u1-l3-09",
+            "es": "Soy estudiante",
+            "ko": "나는 학생이야",
+            "accept_es": [
+              "Yo soy estudiante"
+            ],
+            "note": "직업을 말할 때는 관사(un, una)를 붙이지 않습니다."
+          },
+          {
+            "id": "u1-l3-10",
+            "es": "Hablo un poco de español",
+            "ko": "나는 스페인어를 조금 해",
+            "accept_es": [
+              "Hablo un poco español",
+              "Yo hablo un poco de español"
+            ]
+          }
         ]
       }
     ]
@@ -63,48 +245,686 @@
         "id": "u2-l1",
         "title": "카페에서",
         "items": [
-          { "id": "u2-l1-01", "es": "Un café, por favor", "ko": "커피 한 잔 주세요", "note": "스페인에서 그냥 café라고 하면 보통 에스프레소가 나옵니다." },
-          { "id": "u2-l1-02", "es": "Un café con leche", "ko": "우유 넣은 커피 한 잔", "note": "스페인에서 가장 흔한 아침 커피입니다." },
-          { "id": "u2-l1-03", "es": "Un cortado", "ko": "코르타도 한 잔", "note": "에스프레소에 우유를 조금 넣은 커피입니다." },
-          { "id": "u2-l1-04", "es": "Un té", "ko": "차 한 잔", "note": "té(차)와 te(너를)는 악센트로 구분합니다." },
-          { "id": "u2-l1-05", "es": "Agua, por favor", "ko": "물 주세요", "accept_es": ["Un agua, por favor"] },
-          { "id": "u2-l1-06", "es": "Un zumo de naranja", "ko": "오렌지 주스 한 잔", "note": "스페인은 zumo, 중남미는 jugo라고 합니다." },
-          { "id": "u2-l1-07", "es": "¿Algo más?", "ko": "더 필요한 거 있으세요?" },
-          { "id": "u2-l1-08", "es": "Nada más, gracias", "ko": "그거면 됐어요, 감사합니다", "accept_es": ["Nada más"] },
-          { "id": "u2-l1-09", "es": "¿Cuánto es?", "ko": "얼마예요?", "accept_es": ["¿Cuánto cuesta?"] },
-          { "id": "u2-l1-10", "es": "La cuenta, por favor", "ko": "계산서 주세요" }
+          {
+            "id": "u2-l1-01",
+            "es": "Un café, por favor",
+            "ko": "커피 한 잔 주세요",
+            "note": "스페인에서 그냥 café라고 하면 보통 에스프레소가 나옵니다."
+          },
+          {
+            "id": "u2-l1-02",
+            "es": "Un café con leche",
+            "ko": "우유 넣은 커피 한 잔",
+            "note": "스페인에서 가장 흔한 아침 커피입니다."
+          },
+          {
+            "id": "u2-l1-03",
+            "es": "Un cortado",
+            "ko": "코르타도 한 잔",
+            "note": "에스프레소에 우유를 조금 넣은 커피입니다."
+          },
+          {
+            "id": "u2-l1-04",
+            "es": "Un té",
+            "ko": "차 한 잔",
+            "note": "té(차)와 te(너를)는 악센트로 구분합니다."
+          },
+          {
+            "id": "u2-l1-05",
+            "es": "Agua, por favor",
+            "ko": "물 주세요",
+            "accept_es": [
+              "Un agua, por favor"
+            ]
+          },
+          {
+            "id": "u2-l1-06",
+            "es": "Un zumo de naranja",
+            "ko": "오렌지 주스 한 잔",
+            "note": "스페인은 zumo, 중남미는 jugo라고 합니다."
+          },
+          {
+            "id": "u2-l1-07",
+            "es": "¿Algo más?",
+            "ko": "더 필요한 거 있으세요?"
+          },
+          {
+            "id": "u2-l1-08",
+            "es": "Nada más, gracias",
+            "ko": "그거면 됐어요, 감사합니다",
+            "accept_es": [
+              "Nada más"
+            ]
+          },
+          {
+            "id": "u2-l1-09",
+            "es": "¿Cuánto es?",
+            "ko": "얼마예요?",
+            "accept_es": [
+              "¿Cuánto cuesta?"
+            ]
+          },
+          {
+            "id": "u2-l1-10",
+            "es": "La cuenta, por favor",
+            "ko": "계산서 주세요"
+          }
         ]
       },
       {
         "id": "u2-l2",
         "title": "음식",
         "items": [
-          { "id": "u2-l2-01", "es": "el pan", "ko": "빵", "accept_es": ["pan"], "note": "pan은 남성 명사라 관사 el을 씁니다." },
-          { "id": "u2-l2-02", "es": "la tortilla", "ko": "토르티야 (감자 오믈렛)", "accept_es": ["tortilla"], "note": "스페인의 tortilla는 감자를 넣은 두툼한 오믈렛입니다." },
-          { "id": "u2-l2-03", "es": "el jamón", "ko": "하몬 (스페인식 생햄)", "accept_es": ["jamón"], "note": "j는 목 안쪽에서 긁는 듯한 '흐' 소리입니다." },
-          { "id": "u2-l2-04", "es": "el queso", "ko": "치즈", "accept_es": ["queso"] },
-          { "id": "u2-l2-05", "es": "la manzana", "ko": "사과", "accept_es": ["manzana"], "note": "z는 스페인 발음에서 [θ](영어 th) 소리입니다." },
-          { "id": "u2-l2-06", "es": "Quiero una tortilla", "ko": "나는 토르티야 하나를 원해", "accept_es": ["Yo quiero una tortilla"] },
-          { "id": "u2-l2-07", "es": "Me gusta el queso", "ko": "나는 치즈를 좋아해", "accept_es": ["A mí me gusta el queso"], "note": "gustar는 '~이 나에게 마음에 들다'라는 구조라서 좋아하는 대상이 주어입니다." },
-          { "id": "u2-l2-08", "es": "No me gusta el jamón", "ko": "나는 하몬을 안 좋아해", "accept_es": ["A mí no me gusta el jamón"] },
-          { "id": "u2-l2-09", "es": "¿Te gusta el pan?", "ko": "너 빵 좋아해?", "accept_es": ["¿A ti te gusta el pan?"] },
-          { "id": "u2-l2-10", "es": "Unas tapas", "ko": "타파스 몇 개", "note": "tapas는 바에서 술과 함께 먹는 작은 요리입니다." }
+          {
+            "id": "u2-l2-01",
+            "es": "el pan",
+            "ko": "빵",
+            "accept_es": [
+              "pan"
+            ],
+            "note": "pan은 남성 명사라 관사 el을 씁니다."
+          },
+          {
+            "id": "u2-l2-02",
+            "es": "la tortilla",
+            "ko": "토르티야 (감자 오믈렛)",
+            "accept_es": [
+              "tortilla"
+            ],
+            "note": "스페인의 tortilla는 감자를 넣은 두툼한 오믈렛입니다."
+          },
+          {
+            "id": "u2-l2-03",
+            "es": "el jamón",
+            "ko": "하몬 (스페인식 생햄)",
+            "accept_es": [
+              "jamón"
+            ],
+            "note": "j는 목 안쪽에서 긁는 듯한 '흐' 소리입니다."
+          },
+          {
+            "id": "u2-l2-04",
+            "es": "el queso",
+            "ko": "치즈",
+            "accept_es": [
+              "queso"
+            ]
+          },
+          {
+            "id": "u2-l2-05",
+            "es": "la manzana",
+            "ko": "사과",
+            "accept_es": [
+              "manzana"
+            ],
+            "note": "z는 스페인 발음에서 [θ](영어 th) 소리입니다."
+          },
+          {
+            "id": "u2-l2-06",
+            "es": "Quiero una tortilla",
+            "ko": "나는 토르티야 하나를 원해",
+            "accept_es": [
+              "Yo quiero una tortilla"
+            ]
+          },
+          {
+            "id": "u2-l2-07",
+            "es": "Me gusta el queso",
+            "ko": "나는 치즈를 좋아해",
+            "accept_es": [
+              "A mí me gusta el queso"
+            ],
+            "note": "gustar는 '~이 나에게 마음에 들다'라는 구조라서 좋아하는 대상이 주어입니다."
+          },
+          {
+            "id": "u2-l2-08",
+            "es": "No me gusta el jamón",
+            "ko": "나는 하몬을 안 좋아해",
+            "accept_es": [
+              "A mí no me gusta el jamón"
+            ]
+          },
+          {
+            "id": "u2-l2-09",
+            "es": "¿Te gusta el pan?",
+            "ko": "너 빵 좋아해?",
+            "accept_es": [
+              "¿A ti te gusta el pan?"
+            ]
+          },
+          {
+            "id": "u2-l2-10",
+            "es": "Unas tapas",
+            "ko": "타파스 몇 개",
+            "note": "tapas는 바에서 술과 함께 먹는 작은 요리입니다."
+          }
         ]
       },
       {
         "id": "u2-l3",
         "title": "바와 식당에서",
         "items": [
-          { "id": "u2-l3-01", "es": "Una mesa para dos, por favor", "ko": "두 명 자리 부탁합니다", "accept_es": ["Una mesa para dos personas, por favor"] },
-          { "id": "u2-l3-02", "es": "¿Qué quieres beber?", "ko": "너 뭐 마실래?", "accept_es": ["¿Qué quieres tomar?"] },
-          { "id": "u2-l3-03", "es": "¿Qué quiere usted?", "ko": "무엇을 원하세요?", "accept_es": ["¿Qué quiere?"] },
-          { "id": "u2-l3-04", "es": "Para mí, una cerveza", "ko": "나는 맥주 한 잔", "accept_es": ["Una cerveza para mí"] },
-          { "id": "u2-l3-05", "es": "Una caña, por favor", "ko": "생맥주 한 잔 주세요", "note": "caña는 스페인 바에서 파는 작은 잔 생맥주입니다." },
-          { "id": "u2-l3-06", "es": "Está muy rico", "ko": "아주 맛있어", "accept_es": ["Está riquísimo"], "note": "음식이 맛있다고 할 때 rico를 씁니다." },
-          { "id": "u2-l3-07", "es": "Tengo hambre", "ko": "나 배고파", "accept_es": ["Yo tengo hambre"], "note": "'배고픔(hambre)을 가지다(tener)'라고 말합니다." },
-          { "id": "u2-l3-08", "es": "Tengo sed", "ko": "나 목말라", "accept_es": ["Yo tengo sed"] },
-          { "id": "u2-l3-09", "es": "¿Qué queréis tomar?", "ko": "(너희) 뭐 마실래?", "accept_es": ["¿Qué queréis beber?"], "note": "vosotros(너희)는 스페인에서 쓰는 복수 2인칭이고, querer는 queréis가 됩니다." },
-          { "id": "u2-l3-10", "es": "¡Buen provecho!", "ko": "맛있게 드세요", "accept_es": ["Que aproveche"], "note": "식사하는 사람에게 건네는 인사입니다." }
+          {
+            "id": "u2-l3-01",
+            "es": "Una mesa para dos, por favor",
+            "ko": "두 명 자리 부탁합니다",
+            "accept_es": [
+              "Una mesa para dos personas, por favor"
+            ]
+          },
+          {
+            "id": "u2-l3-02",
+            "es": "¿Qué quieres beber?",
+            "ko": "너 뭐 마실래?",
+            "accept_es": [
+              "¿Qué quieres tomar?"
+            ]
+          },
+          {
+            "id": "u2-l3-03",
+            "es": "¿Qué quiere usted?",
+            "ko": "무엇을 원하세요?",
+            "accept_es": [
+              "¿Qué quiere?"
+            ]
+          },
+          {
+            "id": "u2-l3-04",
+            "es": "Para mí, una cerveza",
+            "ko": "나는 맥주 한 잔",
+            "accept_es": [
+              "Una cerveza para mí"
+            ]
+          },
+          {
+            "id": "u2-l3-05",
+            "es": "Una caña, por favor",
+            "ko": "생맥주 한 잔 주세요",
+            "note": "caña는 스페인 바에서 파는 작은 잔 생맥주입니다."
+          },
+          {
+            "id": "u2-l3-06",
+            "es": "Está muy rico",
+            "ko": "아주 맛있어",
+            "accept_es": [
+              "Está riquísimo"
+            ],
+            "note": "음식이 맛있다고 할 때 rico를 씁니다."
+          },
+          {
+            "id": "u2-l3-07",
+            "es": "Tengo hambre",
+            "ko": "나 배고파",
+            "accept_es": [
+              "Yo tengo hambre"
+            ],
+            "note": "'배고픔(hambre)을 가지다(tener)'라고 말합니다."
+          },
+          {
+            "id": "u2-l3-08",
+            "es": "Tengo sed",
+            "ko": "나 목말라",
+            "accept_es": [
+              "Yo tengo sed"
+            ]
+          },
+          {
+            "id": "u2-l3-09",
+            "es": "¿Qué queréis tomar?",
+            "ko": "(너희) 뭐 마실래?",
+            "accept_es": [
+              "¿Qué queréis beber?"
+            ],
+            "note": "vosotros(너희)는 스페인에서 쓰는 복수 2인칭이고, querer는 queréis가 됩니다."
+          },
+          {
+            "id": "u2-l3-10",
+            "es": "¡Buen provecho!",
+            "ko": "맛있게 드세요",
+            "accept_es": [
+              "Que aproveche"
+            ],
+            "note": "식사하는 사람에게 건네는 인사입니다."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "u3",
+    "title": "가족과 사람",
+    "description": "가족 소개, 사람 묘사, 너희와 우리(vosotros)",
+    "lessons": [
+      {
+        "id": "u3-l1",
+        "title": "가족",
+        "items": [
+          {
+            "id": "u3-l1-01",
+            "es": "la familia",
+            "ko": "가족",
+            "accept_es": [
+              "familia"
+            ]
+          },
+          {
+            "id": "u3-l1-02",
+            "es": "mi madre",
+            "ko": "우리 어머니",
+            "accept_es": [
+              "mi mamá"
+            ],
+            "note": "mi는 '나의'입니다. 한국어의 '우리 어머니'도 스페인어로는 mi madre라고 합니다."
+          },
+          {
+            "id": "u3-l1-03",
+            "es": "mi padre",
+            "ko": "우리 아버지",
+            "accept_es": [
+              "mi papá"
+            ]
+          },
+          {
+            "id": "u3-l1-04",
+            "es": "mi hermano",
+            "ko": "내 남자 형제",
+            "note": "한국어처럼 손위·손아래를 나누지 않습니다. 형, 오빠, 남동생 모두 hermano입니다."
+          },
+          {
+            "id": "u3-l1-05",
+            "es": "mi hermana",
+            "ko": "내 여자 형제",
+            "note": "언니, 누나, 여동생 모두 hermana입니다."
+          },
+          {
+            "id": "u3-l1-06",
+            "es": "Tengo dos hermanos",
+            "ko": "나는 형제가 두 명 있어",
+            "accept_es": [
+              "Yo tengo dos hermanos"
+            ],
+            "note": "복수형 hermanos는 남녀가 섞인 형제자매도 뜻합니다."
+          },
+          {
+            "id": "u3-l1-07",
+            "es": "¿Tienes hermanos?",
+            "ko": "너 형제 있어?",
+            "accept_es": [
+              "¿Tú tienes hermanos?"
+            ]
+          },
+          {
+            "id": "u3-l1-08",
+            "es": "Mis padres son de Sevilla",
+            "ko": "우리 부모님은 세비야 출신이야",
+            "note": "padres는 '아버지들'이 아니라 '부모님'입니다."
+          },
+          {
+            "id": "u3-l1-09",
+            "es": "Mi abuela se llama Carmen",
+            "ko": "우리 할머니 이름은 카르멘이야"
+          },
+          {
+            "id": "u3-l1-10",
+            "es": "Este es mi hijo",
+            "ko": "이쪽은 내 아들이야",
+            "accept_es": [
+              "Éste es mi hijo"
+            ],
+            "note": "사람을 소개할 때 este(남성), esta(여성)를 씁니다."
+          }
+        ]
+      },
+      {
+        "id": "u3-l2",
+        "title": "사람 묘사",
+        "items": [
+          {
+            "id": "u3-l2-01",
+            "es": "Es alto",
+            "ko": "그는 키가 커",
+            "accept_es": [
+              "Él es alto"
+            ],
+            "note": "주어가 분명하면 él, ella를 빼고 말하는 경우가 많습니다."
+          },
+          {
+            "id": "u3-l2-02",
+            "es": "Es alta",
+            "ko": "그녀는 키가 커",
+            "accept_es": [
+              "Ella es alta"
+            ]
+          },
+          {
+            "id": "u3-l2-03",
+            "es": "Mi hermana es simpática",
+            "ko": "내 여자 형제는 상냥해",
+            "note": "simpático는 '친절하고 호감 가는'이라는 뜻입니다. 여성에게는 simpática."
+          },
+          {
+            "id": "u3-l2-04",
+            "es": "Mi padre es muy alto",
+            "ko": "우리 아버지는 키가 아주 커"
+          },
+          {
+            "id": "u3-l2-05",
+            "es": "Ella es inteligente",
+            "ko": "그녀는 똑똑해",
+            "accept_es": [
+              "Es inteligente"
+            ],
+            "note": "-e로 끝나는 형용사는 남녀 형태가 같습니다."
+          },
+          {
+            "id": "u3-l2-06",
+            "es": "¿Cómo es tu madre?",
+            "ko": "네 어머니는 어떤 분이야?",
+            "note": "ser로 성격이나 생김새를 묻습니다."
+          },
+          {
+            "id": "u3-l2-07",
+            "es": "Estoy contento",
+            "ko": "나 기뻐 (남성)",
+            "accept_es": [
+              "Yo estoy contento"
+            ],
+            "note": "estar는 지금의 상태, ser는 늘 그런 성질을 말합니다. 여성은 contenta."
+          },
+          {
+            "id": "u3-l2-08",
+            "es": "Estoy contenta",
+            "ko": "나 기뻐 (여성)",
+            "accept_es": [
+              "Yo estoy contenta"
+            ]
+          },
+          {
+            "id": "u3-l2-09",
+            "es": "Mi hermano está cansado",
+            "ko": "내 남자 형제는 피곤해"
+          },
+          {
+            "id": "u3-l2-10",
+            "es": "Somos amigos",
+            "ko": "우리는 친구야",
+            "accept_es": [
+              "Nosotros somos amigos"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "u3-l3",
+        "title": "너희와 우리",
+        "items": [
+          {
+            "id": "u3-l3-01",
+            "es": "¿Sois hermanos?",
+            "ko": "(너희) 형제야?",
+            "accept_es": [
+              "¿Vosotros sois hermanos?"
+            ],
+            "note": "vosotros(너희)에는 ser가 sois가 됩니다. 스페인에서만 씁니다."
+          },
+          {
+            "id": "u3-l3-02",
+            "es": "Sí, somos hermanos",
+            "ko": "응, 우리는 형제야",
+            "accept_es": [
+              "Sí, nosotros somos hermanos"
+            ]
+          },
+          {
+            "id": "u3-l3-03",
+            "es": "¿De dónde sois?",
+            "ko": "(너희) 어디 출신이야?",
+            "accept_es": [
+              "¿De dónde sois vosotros?"
+            ]
+          },
+          {
+            "id": "u3-l3-04",
+            "es": "Somos de Corea",
+            "ko": "우리는 한국 출신이야",
+            "accept_es": [
+              "Nosotros somos de Corea"
+            ]
+          },
+          {
+            "id": "u3-l3-05",
+            "es": "¿Tenéis hijos?",
+            "ko": "(너희) 자녀 있어?",
+            "accept_es": [
+              "¿Vosotros tenéis hijos?"
+            ],
+            "note": "tener는 vosotros에서 tenéis가 됩니다."
+          },
+          {
+            "id": "u3-l3-06",
+            "es": "Tenemos una hija",
+            "ko": "우리는 딸이 하나 있어",
+            "accept_es": [
+              "Nosotros tenemos una hija"
+            ]
+          },
+          {
+            "id": "u3-l3-07",
+            "es": "¿Cómo estáis?",
+            "ko": "(너희) 어떻게 지내?",
+            "accept_es": [
+              "¿Cómo estáis vosotros?"
+            ]
+          },
+          {
+            "id": "u3-l3-08",
+            "es": "Estamos bien",
+            "ko": "우리는 잘 지내",
+            "accept_es": [
+              "Nosotros estamos bien"
+            ]
+          },
+          {
+            "id": "u3-l3-09",
+            "es": "¿Cómo están ustedes?",
+            "ko": "(여러분, 존댓말) 어떻게 지내세요?",
+            "accept_es": [
+              "¿Cómo están?"
+            ],
+            "note": "ustedes는 존댓말 복수이고, 동사는 3인칭 복수 형태(están)를 씁니다."
+          },
+          {
+            "id": "u3-l3-10",
+            "es": "Sois muy simpáticos",
+            "ko": "(너희) 정말 상냥하구나",
+            "accept_es": [
+              "Vosotros sois muy simpáticos"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "u4",
+    "title": "숫자와 시간",
+    "description": "1부터 20까지 세기, 몇 시인지 말하기",
+    "lessons": [
+      {
+        "id": "u4-l1",
+        "title": "숫자 1~10",
+        "items": [
+          {
+            "id": "u4-l1-01",
+            "es": "uno",
+            "ko": "하나 (1)",
+            "note": "명사 앞에서는 un(남성), una(여성)로 바뀝니다."
+          },
+          {
+            "id": "u4-l1-02",
+            "es": "dos",
+            "ko": "둘 (2)"
+          },
+          {
+            "id": "u4-l1-03",
+            "es": "tres",
+            "ko": "셋 (3)"
+          },
+          {
+            "id": "u4-l1-04",
+            "es": "cuatro",
+            "ko": "넷 (4)"
+          },
+          {
+            "id": "u4-l1-05",
+            "es": "cinco",
+            "ko": "다섯 (5)",
+            "note": "ci는 스페인 발음에서 혀를 내미는 [θ] 소리입니다."
+          },
+          {
+            "id": "u4-l1-06",
+            "es": "seis",
+            "ko": "여섯 (6)"
+          },
+          {
+            "id": "u4-l1-07",
+            "es": "siete",
+            "ko": "일곱 (7)"
+          },
+          {
+            "id": "u4-l1-08",
+            "es": "ocho",
+            "ko": "여덟 (8)"
+          },
+          {
+            "id": "u4-l1-09",
+            "es": "nueve",
+            "ko": "아홉 (9)"
+          },
+          {
+            "id": "u4-l1-10",
+            "es": "diez",
+            "ko": "열 (10)",
+            "note": "z도 [θ] 소리입니다."
+          }
+        ]
+      },
+      {
+        "id": "u4-l2",
+        "title": "숫자 11~20",
+        "items": [
+          {
+            "id": "u4-l2-01",
+            "es": "once",
+            "ko": "열하나 (11)"
+          },
+          {
+            "id": "u4-l2-02",
+            "es": "doce",
+            "ko": "열둘 (12)"
+          },
+          {
+            "id": "u4-l2-03",
+            "es": "trece",
+            "ko": "열셋 (13)"
+          },
+          {
+            "id": "u4-l2-04",
+            "es": "catorce",
+            "ko": "열넷 (14)"
+          },
+          {
+            "id": "u4-l2-05",
+            "es": "quince",
+            "ko": "열다섯 (15)"
+          },
+          {
+            "id": "u4-l2-06",
+            "es": "dieciséis",
+            "ko": "열여섯 (16)",
+            "note": "16~19는 diez y seis를 한 단어로 붙여 씁니다. dieciséis에는 악센트가 있습니다."
+          },
+          {
+            "id": "u4-l2-07",
+            "es": "diecisiete",
+            "ko": "열일곱 (17)"
+          },
+          {
+            "id": "u4-l2-08",
+            "es": "dieciocho",
+            "ko": "열여덟 (18)"
+          },
+          {
+            "id": "u4-l2-09",
+            "es": "diecinueve",
+            "ko": "열아홉 (19)"
+          },
+          {
+            "id": "u4-l2-10",
+            "es": "veinte",
+            "ko": "스물 (20)"
+          }
+        ]
+      },
+      {
+        "id": "u4-l3",
+        "title": "몇 시예요?",
+        "items": [
+          {
+            "id": "u4-l3-01",
+            "es": "¿Qué hora es?",
+            "ko": "몇 시야?"
+          },
+          {
+            "id": "u4-l3-02",
+            "es": "Es la una",
+            "ko": "1시야",
+            "note": "1시만 es la una이고, 나머지 시각은 son las를 씁니다."
+          },
+          {
+            "id": "u4-l3-03",
+            "es": "Son las dos",
+            "ko": "2시야"
+          },
+          {
+            "id": "u4-l3-04",
+            "es": "Son las tres en punto",
+            "ko": "3시 정각이야",
+            "note": "en punto는 '정각'입니다."
+          },
+          {
+            "id": "u4-l3-05",
+            "es": "Son las cuatro y media",
+            "ko": "4시 반이야",
+            "note": "y media는 '30분', y cuarto는 '15분'입니다."
+          },
+          {
+            "id": "u4-l3-06",
+            "es": "Son las cinco y cuarto",
+            "ko": "5시 15분이야"
+          },
+          {
+            "id": "u4-l3-07",
+            "es": "Son las seis menos cuarto",
+            "ko": "5시 45분이야",
+            "note": "menos cuarto는 '15분 전'이라 6시 15분 전, 즉 5시 45분입니다."
+          },
+          {
+            "id": "u4-l3-08",
+            "es": "Es la una y media",
+            "ko": "1시 반이야"
+          },
+          {
+            "id": "u4-l3-09",
+            "es": "Son las doce",
+            "ko": "12시야"
+          },
+          {
+            "id": "u4-l3-10",
+            "es": "A las ocho",
+            "ko": "8시에",
+            "note": "'몇 시에'는 a las를 씁니다."
+          }
         ]
       }
     ]

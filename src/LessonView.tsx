@@ -271,7 +271,7 @@ export default function LessonView({ items, pool, available, voice, requeue, onF
         {t === 'speak' && !result && (
           <div className="speaking">
             <button type="button" className="mic" onClick={record} disabled={mic === 'listening'} aria-live="polite">
-              {mic === 'listening' ? '듣는 중입니다' : mic === 'failed' ? '다시 말하기' : '말하기'}
+              {mic === 'listening' ? '듣는 중' : mic === 'failed' ? '다시 말하기' : '말하기'}
             </button>
             {mic === 'failed' && (
               <p className="muted" role="status">

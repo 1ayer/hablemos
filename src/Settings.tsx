@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useState, type ChangeEvent, type FormEvent } from 'react'
 import { DEFAULT_MODEL, MODEL_SUGGESTIONS, isModelId } from './lib/gemini'
 import type { State } from './lib/state'
 
@@ -11,14 +11,27 @@ type Props = {
   onSettings: (patch: Partial<State['settings']>) => void
   onDeleteAi: () => void
   onReset: () => void
+  onExport: () => void
+  /** Returns an error message, or null when the file replaced the progress. */
+  onImport: (text: string) => string | null
   onBack: () => void
 }
 
-export default function Settings({ settings, apiKey, aiCount, onSaveKey, onDeleteKey, onSettings, onDeleteAi, onReset, onBack }: Props) {
+export default function Settings({ settings, apiKey, aiCount, onSaveKey, onDeleteKey, onSettings, onDeleteAi, onReset, onExport, onImport, onBack }: Props) {
   const [keyInput, setKeyInput] = useState('')
   const [keyMsg, setKeyMsg] = useState<string | null>(null)
   const [model, setModel] = useState(settings.geminiModel || DEFAULT_MODEL)
   const [modelMsg, setModelMsg] = useState<string | null>(null)
+  const [dataMsg, setDataMsg] = useState<string | null>(null)
+
+  async function importFile(e: ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    e.target.value = '' // allow choosing the same file again
+    if (!file) return
+    if (file.size > 2_000_000) return setDataMsg('파일이 너무 큽니다. hablemos에서 내보낸 파일인지 확인하세요.')
+    if (!confirm('지금 진도를 이 파일의 진도로 바꿀까요? 되돌릴 수 없습니다.')) return
+    setDataMsg(onImport(await file.text()) ?? '진도를 가져왔습니다.')
+  }
 
   function saveKey(e: FormEvent) {
     e.preventDefault()
@@ -102,6 +115,17 @@ export default function Settings({ settings, apiKey, aiCount, onSaveKey, onDelet
 
       <section aria-labelledby="data-title">
         <h2 id="data-title">학습 기록</h2>
+        <p className="muted">진도는 이 브라우저에만 저장됩니다. 다른 기기로 옮기거나 백업하려면 파일로 내보내세요. API 키는 파일에 들어가지 않습니다.</p>
+        <div className="danger-row">
+          <button type="button" className="secondary" onClick={() => { onExport(); setDataMsg('진도 파일을 내려받았습니다.') }}>
+            진도 내보내기
+          </button>
+          <label className="secondary file-btn">
+            진도 가져오기
+            <input type="file" accept="application/json,.json" className="sr-only" onChange={importFile} />
+          </label>
+        </div>
+        {dataMsg && <p role="status">{dataMsg}</p>}
         <div className="danger-row">
           <button
             type="button"
