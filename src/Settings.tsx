@@ -61,12 +61,22 @@ export default function Settings({ settings, apiKey, aiCount, onSaveKey, onDelet
       <section aria-labelledby="key-title">
         <h2 id="key-title">Gemini API 키</h2>
         <p className="muted">
-          AI 연습과 대화 연습에 씁니다. 키가 없어도 레슨과 복습은 그대로 쓸 수 있습니다. 키는{' '}
-          <a href="https://aistudio.google.com/apikey" target="_blank" rel="noreferrer">
-            Google AI Studio
-          </a>
-          에서 무료로 만들 수 있습니다.
+          AI 연습과 대화 연습에 씁니다. 키가 없어도 레슨, 복습, 듣기, 말하기는 그대로 쓸 수 있습니다. 키는 이 페이지를 쓰는 사람마다 자기 것을 넣습니다.
         </p>
+        <details className="guide" open={!apiKey}>
+          <summary>무료 키 받는 법</summary>
+          <ol>
+            <li>
+              <a href="https://aistudio.google.com/apikey" target="_blank" rel="noreferrer">
+                Google AI Studio의 API 키 페이지
+              </a>
+              를 열고 Google 계정으로 로그인합니다.
+            </li>
+            <li>새 API 키를 만듭니다. 이 앱에만 쓸 키를 따로 만드는 것이 좋습니다.</li>
+            <li>만든 키를 복사해 아래 칸에 붙여 넣고 저장을 누릅니다.</li>
+            <li>AI Studio에서 키의 사용량과 한도를 확인할 수 있습니다. 키는 다른 사람에게 알려 주지 마세요.</li>
+          </ol>
+        </details>
         {apiKey ? (
           <div className="key-row">
             <p>
@@ -87,7 +97,6 @@ export default function Settings({ settings, apiKey, aiCount, onSaveKey, onDelet
         <ul className="fine">
           <li>키는 이 브라우저에만 저장되고, 요청할 때 Gemini로 직접 전송됩니다. 같은 주소에서 열린 다른 페이지의 스크립트도 읽을 수 있으니 이 앱 전용 키를 쓰세요.</li>
           <li>무료 키로 보낸 내용은 Google 제품 개선에 쓰일 수 있습니다. 대화 연습에 개인정보를 적지 마세요.</li>
-          <li>무료 사용 한도는 Google AI Studio에서 확인할 수 있습니다.</li>
         </ul>
       </section>
 

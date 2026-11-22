@@ -1865,5 +1865,931 @@
         ]
       }
     ]
+  },
+  {
+    "id": "u9",
+    "title": "집과 방",
+    "description": "집과 방 이름, 가구와 물건, 어디에 있는지 말하기",
+    "lessons": [
+      {
+        "id": "u9-l1",
+        "title": "집",
+        "items": [
+          {
+            "id": "u9-l1-01",
+            "es": "la casa",
+            "ko": "집",
+            "accept_es": [
+              "casa"
+            ]
+          },
+          {
+            "id": "u9-l1-02",
+            "es": "el piso",
+            "ko": "아파트",
+            "accept_es": [
+              "piso"
+            ],
+            "note": "스페인에서는 아파트를 piso라고 합니다."
+          },
+          {
+            "id": "u9-l1-03",
+            "es": "la cocina",
+            "ko": "부엌",
+            "accept_es": [
+              "cocina"
+            ]
+          },
+          {
+            "id": "u9-l1-04",
+            "es": "el salón",
+            "ko": "거실",
+            "accept_es": [
+              "salón"
+            ]
+          },
+          {
+            "id": "u9-l1-05",
+            "es": "el dormitorio",
+            "ko": "침실",
+            "accept_es": [
+              "dormitorio"
+            ]
+          },
+          {
+            "id": "u9-l1-06",
+            "es": "el baño",
+            "ko": "욕실",
+            "accept_es": [
+              "baño"
+            ]
+          },
+          {
+            "id": "u9-l1-07",
+            "es": "la habitación",
+            "ko": "방",
+            "accept_es": [
+              "habitación"
+            ],
+            "note": "habitación은 호텔 객실도 뜻합니다."
+          },
+          {
+            "id": "u9-l1-08",
+            "es": "Vivo en un piso",
+            "ko": "나는 아파트에 살아",
+            "accept_es": [
+              "Yo vivo en un piso"
+            ]
+          },
+          {
+            "id": "u9-l1-09",
+            "es": "Mi casa es pequeña",
+            "ko": "우리 집은 작아"
+          },
+          {
+            "id": "u9-l1-10",
+            "es": "¿Dónde vives?",
+            "ko": "너 어디 살아?",
+            "accept_es": [
+              "¿Dónde vives tú?"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "u9-l2",
+        "title": "가구와 물건",
+        "items": [
+          {
+            "id": "u9-l2-01",
+            "es": "la mesa",
+            "ko": "탁자",
+            "accept_es": [
+              "mesa"
+            ]
+          },
+          {
+            "id": "u9-l2-02",
+            "es": "la silla",
+            "ko": "의자",
+            "accept_es": [
+              "silla"
+            ]
+          },
+          {
+            "id": "u9-l2-03",
+            "es": "la cama",
+            "ko": "침대",
+            "accept_es": [
+              "cama"
+            ]
+          },
+          {
+            "id": "u9-l2-04",
+            "es": "el sofá",
+            "ko": "소파",
+            "accept_es": [
+              "sofá"
+            ]
+          },
+          {
+            "id": "u9-l2-05",
+            "es": "la ventana",
+            "ko": "창문",
+            "accept_es": [
+              "ventana"
+            ]
+          },
+          {
+            "id": "u9-l2-06",
+            "es": "la puerta",
+            "ko": "문",
+            "accept_es": [
+              "puerta"
+            ]
+          },
+          {
+            "id": "u9-l2-07",
+            "es": "la llave",
+            "ko": "열쇠",
+            "accept_es": [
+              "llave"
+            ]
+          },
+          {
+            "id": "u9-l2-08",
+            "es": "La cama está en el dormitorio",
+            "ko": "침대는 침실에 있어"
+          },
+          {
+            "id": "u9-l2-09",
+            "es": "Hay dos sillas en la cocina",
+            "ko": "부엌에 의자가 두 개 있어",
+            "accept_es": [
+              "En la cocina hay dos sillas"
+            ]
+          },
+          {
+            "id": "u9-l2-10",
+            "es": "Abre la ventana, por favor",
+            "ko": "창문 좀 열어 줘",
+            "accept_es": [
+              "Por favor, abre la ventana"
+            ],
+            "note": "abre는 tú에게 하는 부탁·명령 형태입니다."
+          }
+        ]
+      },
+      {
+        "id": "u9-l3",
+        "title": "어디에 있어?",
+        "items": [
+          {
+            "id": "u9-l3-01",
+            "es": "encima de la mesa",
+            "ko": "탁자 위에",
+            "accept_es": [
+              "sobre la mesa"
+            ]
+          },
+          {
+            "id": "u9-l3-02",
+            "es": "debajo de la cama",
+            "ko": "침대 밑에"
+          },
+          {
+            "id": "u9-l3-03",
+            "es": "al lado de la puerta",
+            "ko": "문 옆에"
+          },
+          {
+            "id": "u9-l3-04",
+            "es": "delante de la casa",
+            "ko": "집 앞에"
+          },
+          {
+            "id": "u9-l3-05",
+            "es": "detrás del sofá",
+            "ko": "소파 뒤에",
+            "note": "de와 el이 만나면 del이 됩니다."
+          },
+          {
+            "id": "u9-l3-06",
+            "es": "Las llaves están encima de la mesa",
+            "ko": "열쇠들은 탁자 위에 있어",
+            "accept_es": [
+              "Las llaves están sobre la mesa"
+            ]
+          },
+          {
+            "id": "u9-l3-07",
+            "es": "El gato está debajo de la cama",
+            "ko": "고양이가 침대 밑에 있어"
+          },
+          {
+            "id": "u9-l3-08",
+            "es": "¿Dónde están mis llaves?",
+            "ko": "내 열쇠들 어디 있지?"
+          },
+          {
+            "id": "u9-l3-09",
+            "es": "Mi piso está cerca del centro",
+            "ko": "우리 아파트는 시내 근처에 있어"
+          },
+          {
+            "id": "u9-l3-10",
+            "es": "La cocina es muy grande",
+            "ko": "부엌이 아주 넓어"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "u10",
+    "title": "취미와 여가",
+    "description": "좋아하는 것, 여가 활동, 만날 약속 잡기",
+    "lessons": [
+      {
+        "id": "u10-l1",
+        "title": "좋아하는 것",
+        "items": [
+          {
+            "id": "u10-l1-01",
+            "es": "Me gusta leer",
+            "ko": "나는 책 읽는 걸 좋아해",
+            "accept_es": [
+              "A mí me gusta leer"
+            ],
+            "note": "gustar 뒤에 동사원형을 쓰면 '~하는 걸 좋아한다'입니다."
+          },
+          {
+            "id": "u10-l1-02",
+            "es": "Me gusta cocinar",
+            "ko": "나는 요리하는 걸 좋아해",
+            "accept_es": [
+              "A mí me gusta cocinar"
+            ]
+          },
+          {
+            "id": "u10-l1-03",
+            "es": "Me gusta el fútbol",
+            "ko": "나는 축구를 좋아해",
+            "accept_es": [
+              "A mí me gusta el fútbol"
+            ]
+          },
+          {
+            "id": "u10-l1-04",
+            "es": "Me gustan las películas",
+            "ko": "나는 영화를 좋아해",
+            "accept_es": [
+              "A mí me gustan las películas"
+            ],
+            "note": "좋아하는 대상이 복수면 gustan을 씁니다."
+          },
+          {
+            "id": "u10-l1-05",
+            "es": "No me gusta correr",
+            "ko": "나는 달리기를 안 좋아해"
+          },
+          {
+            "id": "u10-l1-06",
+            "es": "¿Te gusta bailar?",
+            "ko": "너 춤추는 거 좋아해?",
+            "accept_es": [
+              "¿A ti te gusta bailar?"
+            ]
+          },
+          {
+            "id": "u10-l1-07",
+            "es": "Me encanta la música",
+            "ko": "나는 음악을 정말 좋아해",
+            "note": "encantar는 '아주 좋아하다'로, gustar와 같은 구조입니다."
+          },
+          {
+            "id": "u10-l1-08",
+            "es": "¿Qué te gusta hacer?",
+            "ko": "너는 뭐 하는 걸 좋아해?"
+          },
+          {
+            "id": "u10-l1-09",
+            "es": "A mi hermano le gusta nadar",
+            "ko": "내 남자 형제는 수영하는 걸 좋아해",
+            "note": "다른 사람이 좋아할 때는 le gusta를 씁니다."
+          },
+          {
+            "id": "u10-l1-10",
+            "es": "Nos gusta viajar",
+            "ko": "우리는 여행하는 걸 좋아해",
+            "accept_es": [
+              "A nosotros nos gusta viajar"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "u10-l2",
+        "title": "여가 활동",
+        "items": [
+          {
+            "id": "u10-l2-01",
+            "es": "Juego al fútbol",
+            "ko": "나는 축구를 해",
+            "accept_es": [
+              "Yo juego al fútbol"
+            ],
+            "note": "운동 경기는 jugar a로 말합니다."
+          },
+          {
+            "id": "u10-l2-02",
+            "es": "Toco la guitarra",
+            "ko": "나는 기타를 쳐",
+            "accept_es": [
+              "Yo toco la guitarra"
+            ],
+            "note": "악기는 tocar로 말합니다."
+          },
+          {
+            "id": "u10-l2-03",
+            "es": "Escucho música",
+            "ko": "나는 음악을 들어",
+            "accept_es": [
+              "Yo escucho música"
+            ]
+          },
+          {
+            "id": "u10-l2-04",
+            "es": "Veo la tele",
+            "ko": "나는 TV를 봐",
+            "accept_es": [
+              "Veo la televisión",
+              "Yo veo la tele"
+            ]
+          },
+          {
+            "id": "u10-l2-05",
+            "es": "Leo un libro",
+            "ko": "나는 책을 읽어",
+            "accept_es": [
+              "Yo leo un libro"
+            ]
+          },
+          {
+            "id": "u10-l2-06",
+            "es": "Salgo con mis amigos",
+            "ko": "나는 친구들이랑 놀러 나가",
+            "accept_es": [
+              "Yo salgo con mis amigos"
+            ],
+            "note": "salir는 '나가다'이고 '놀러 나가다'로도 씁니다."
+          },
+          {
+            "id": "u10-l2-07",
+            "es": "Hago deporte",
+            "ko": "나는 운동을 해",
+            "accept_es": [
+              "Yo hago deporte"
+            ]
+          },
+          {
+            "id": "u10-l2-08",
+            "es": "Voy al cine los viernes",
+            "ko": "나는 금요일마다 영화관에 가",
+            "accept_es": [
+              "Los viernes voy al cine"
+            ]
+          },
+          {
+            "id": "u10-l2-09",
+            "es": "¿Juegas al tenis?",
+            "ko": "너 테니스 쳐?",
+            "accept_es": [
+              "¿Tú juegas al tenis?"
+            ]
+          },
+          {
+            "id": "u10-l2-10",
+            "es": "Mi abuela pinta",
+            "ko": "우리 할머니는 그림을 그리셔"
+          }
+        ]
+      },
+      {
+        "id": "u10-l3",
+        "title": "약속 잡기",
+        "items": [
+          {
+            "id": "u10-l3-01",
+            "es": "¿Quieres ir al cine?",
+            "ko": "영화관 갈래?"
+          },
+          {
+            "id": "u10-l3-02",
+            "es": "¿Quedamos mañana?",
+            "ko": "내일 만날까?",
+            "note": "quedar는 스페인에서 '만나기로 하다'로 많이 씁니다."
+          },
+          {
+            "id": "u10-l3-03",
+            "es": "¿A qué hora quedamos?",
+            "ko": "몇 시에 만날까?"
+          },
+          {
+            "id": "u10-l3-04",
+            "es": "Quedamos a las seis",
+            "ko": "6시에 만나자"
+          },
+          {
+            "id": "u10-l3-05",
+            "es": "¿Dónde quedamos?",
+            "ko": "어디서 만날까?"
+          },
+          {
+            "id": "u10-l3-06",
+            "es": "Vale, perfecto",
+            "ko": "좋아, 딱 좋네",
+            "note": "vale는 스페인에서 '좋아, 알았어'라는 뜻으로 아주 자주 씁니다."
+          },
+          {
+            "id": "u10-l3-07",
+            "es": "Lo siento, no puedo",
+            "ko": "미안, 나 안 돼"
+          },
+          {
+            "id": "u10-l3-08",
+            "es": "Tengo que trabajar",
+            "ko": "나 일해야 해",
+            "accept_es": [
+              "Yo tengo que trabajar"
+            ],
+            "note": "tener que + 동사원형은 '~해야 한다'입니다."
+          },
+          {
+            "id": "u10-l3-09",
+            "es": "¿Y el sábado?",
+            "ko": "토요일은 어때?"
+          },
+          {
+            "id": "u10-l3-10",
+            "es": "¡Hasta el sábado!",
+            "ko": "토요일에 봐!"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "u11",
+    "title": "여행",
+    "description": "호텔에서, 공항과 기차역에서, 여행 이야기",
+    "lessons": [
+      {
+        "id": "u11-l1",
+        "title": "호텔에서",
+        "items": [
+          {
+            "id": "u11-l1-01",
+            "es": "Tengo una reserva",
+            "ko": "예약했어요"
+          },
+          {
+            "id": "u11-l1-02",
+            "es": "Una habitación doble",
+            "ko": "2인실 하나"
+          },
+          {
+            "id": "u11-l1-03",
+            "es": "Una habitación individual",
+            "ko": "1인실 하나"
+          },
+          {
+            "id": "u11-l1-04",
+            "es": "¿Para cuántas noches?",
+            "ko": "몇 박이세요?"
+          },
+          {
+            "id": "u11-l1-05",
+            "es": "Para tres noches",
+            "ko": "3박이요"
+          },
+          {
+            "id": "u11-l1-06",
+            "es": "¿El desayuno está incluido?",
+            "ko": "아침 식사가 포함돼 있어요?",
+            "accept_es": [
+              "¿Está incluido el desayuno?"
+            ]
+          },
+          {
+            "id": "u11-l1-07",
+            "es": "¿A qué hora es el desayuno?",
+            "ko": "아침 식사는 몇 시예요?"
+          },
+          {
+            "id": "u11-l1-08",
+            "es": "La llave de la habitación, por favor",
+            "ko": "방 열쇠 주세요"
+          },
+          {
+            "id": "u11-l1-09",
+            "es": "¿Hay wifi?",
+            "ko": "와이파이 있어요?"
+          },
+          {
+            "id": "u11-l1-10",
+            "es": "La habitación es muy bonita",
+            "ko": "방이 아주 예뻐"
+          }
+        ]
+      },
+      {
+        "id": "u11-l2",
+        "title": "공항과 기차역",
+        "items": [
+          {
+            "id": "u11-l2-01",
+            "es": "el aeropuerto",
+            "ko": "공항",
+            "accept_es": [
+              "aeropuerto"
+            ]
+          },
+          {
+            "id": "u11-l2-02",
+            "es": "el avión",
+            "ko": "비행기",
+            "accept_es": [
+              "avión"
+            ]
+          },
+          {
+            "id": "u11-l2-03",
+            "es": "el pasaporte",
+            "ko": "여권",
+            "accept_es": [
+              "pasaporte"
+            ]
+          },
+          {
+            "id": "u11-l2-04",
+            "es": "la maleta",
+            "ko": "여행 가방",
+            "accept_es": [
+              "maleta"
+            ]
+          },
+          {
+            "id": "u11-l2-05",
+            "es": "¿A qué hora sale el avión?",
+            "ko": "비행기는 몇 시에 출발해?"
+          },
+          {
+            "id": "u11-l2-06",
+            "es": "El vuelo llega a las diez",
+            "ko": "항공편은 10시에 도착해"
+          },
+          {
+            "id": "u11-l2-07",
+            "es": "Un billete de ida y vuelta",
+            "ko": "왕복표 한 장",
+            "note": "편도는 de ida, 왕복은 de ida y vuelta입니다."
+          },
+          {
+            "id": "u11-l2-08",
+            "es": "¿De qué andén sale el tren?",
+            "ko": "기차는 몇 번 승강장에서 출발해요?"
+          },
+          {
+            "id": "u11-l2-09",
+            "es": "Mi maleta es azul",
+            "ko": "내 가방은 파란색이야"
+          },
+          {
+            "id": "u11-l2-10",
+            "es": "Tengo que facturar la maleta",
+            "ko": "나는 가방을 부쳐야 해",
+            "note": "facturar는 스페인에서 공항에 짐을 부칠 때 씁니다."
+          }
+        ]
+      },
+      {
+        "id": "u11-l3",
+        "title": "여행 이야기",
+        "items": [
+          {
+            "id": "u11-l3-01",
+            "es": "Estoy de vacaciones",
+            "ko": "나는 휴가 중이야",
+            "accept_es": [
+              "Yo estoy de vacaciones"
+            ]
+          },
+          {
+            "id": "u11-l3-02",
+            "es": "Voy a Barcelona en julio",
+            "ko": "나는 7월에 바르셀로나에 가",
+            "accept_es": [
+              "En julio voy a Barcelona"
+            ]
+          },
+          {
+            "id": "u11-l3-03",
+            "es": "Viajo con mi familia",
+            "ko": "나는 가족이랑 여행해",
+            "accept_es": [
+              "Yo viajo con mi familia"
+            ]
+          },
+          {
+            "id": "u11-l3-04",
+            "es": "Es mi primera vez aquí",
+            "ko": "여기는 처음이야"
+          },
+          {
+            "id": "u11-l3-05",
+            "es": "Me gusta mucho esta ciudad",
+            "ko": "이 도시가 정말 마음에 들어"
+          },
+          {
+            "id": "u11-l3-06",
+            "es": "Quiero visitar el museo",
+            "ko": "나는 박물관에 가 보고 싶어",
+            "accept_es": [
+              "Yo quiero visitar el museo"
+            ]
+          },
+          {
+            "id": "u11-l3-07",
+            "es": "¿Me puede hacer una foto?",
+            "ko": "사진 좀 찍어 주실 수 있어요?",
+            "accept_es": [
+              "¿Me puede sacar una foto?"
+            ],
+            "note": "puede는 usted에게 부탁하는 형태입니다."
+          },
+          {
+            "id": "u11-l3-08",
+            "es": "¿Está lejos el centro?",
+            "ko": "시내가 멀어요?",
+            "accept_es": [
+              "¿El centro está lejos?"
+            ]
+          },
+          {
+            "id": "u11-l3-09",
+            "es": "¿Qué me recomienda?",
+            "ko": "뭘 추천하세요?",
+            "note": "recomienda는 usted에게 묻는 형태입니다."
+          },
+          {
+            "id": "u11-l3-10",
+            "es": "¡Buen viaje!",
+            "ko": "좋은 여행 되세요!"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "u12",
+    "title": "몸과 건강",
+    "description": "몸 이름, 아픈 곳 말하기, 약국과 병원에서",
+    "lessons": [
+      {
+        "id": "u12-l1",
+        "title": "몸",
+        "items": [
+          {
+            "id": "u12-l1-01",
+            "es": "la cabeza",
+            "ko": "머리",
+            "accept_es": [
+              "cabeza"
+            ]
+          },
+          {
+            "id": "u12-l1-02",
+            "es": "la mano",
+            "ko": "손",
+            "accept_es": [
+              "mano"
+            ],
+            "note": "mano는 -o로 끝나지만 여성 명사입니다."
+          },
+          {
+            "id": "u12-l1-03",
+            "es": "el pie",
+            "ko": "발",
+            "accept_es": [
+              "pie"
+            ]
+          },
+          {
+            "id": "u12-l1-04",
+            "es": "la pierna",
+            "ko": "다리",
+            "accept_es": [
+              "pierna"
+            ]
+          },
+          {
+            "id": "u12-l1-05",
+            "es": "el brazo",
+            "ko": "팔",
+            "accept_es": [
+              "brazo"
+            ]
+          },
+          {
+            "id": "u12-l1-06",
+            "es": "los ojos",
+            "ko": "눈 (두 눈)",
+            "accept_es": [
+              "ojos"
+            ]
+          },
+          {
+            "id": "u12-l1-07",
+            "es": "la boca",
+            "ko": "입",
+            "accept_es": [
+              "boca"
+            ]
+          },
+          {
+            "id": "u12-l1-08",
+            "es": "la espalda",
+            "ko": "등",
+            "accept_es": [
+              "espalda"
+            ]
+          },
+          {
+            "id": "u12-l1-09",
+            "es": "el estómago",
+            "ko": "배 (위장)",
+            "accept_es": [
+              "estómago"
+            ]
+          },
+          {
+            "id": "u12-l1-10",
+            "es": "la garganta",
+            "ko": "목구멍",
+            "accept_es": [
+              "garganta"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "u12-l2",
+        "title": "아플 때",
+        "items": [
+          {
+            "id": "u12-l2-01",
+            "es": "Me duele la cabeza",
+            "ko": "나 머리가 아파",
+            "note": "doler는 gustar처럼 아픈 곳이 주어가 됩니다."
+          },
+          {
+            "id": "u12-l2-02",
+            "es": "Me duele el estómago",
+            "ko": "나 배가 아파"
+          },
+          {
+            "id": "u12-l2-03",
+            "es": "Me duelen los pies",
+            "ko": "나 발이 아파",
+            "note": "아픈 곳이 복수면 duelen을 씁니다."
+          },
+          {
+            "id": "u12-l2-04",
+            "es": "Estoy enfermo",
+            "ko": "나 아파 (남성)",
+            "accept_es": [
+              "Yo estoy enfermo"
+            ]
+          },
+          {
+            "id": "u12-l2-05",
+            "es": "Estoy enferma",
+            "ko": "나 아파 (여성)",
+            "accept_es": [
+              "Yo estoy enferma"
+            ]
+          },
+          {
+            "id": "u12-l2-06",
+            "es": "Tengo fiebre",
+            "ko": "나 열이 나",
+            "accept_es": [
+              "Yo tengo fiebre"
+            ]
+          },
+          {
+            "id": "u12-l2-07",
+            "es": "Tengo tos",
+            "ko": "나 기침이 나",
+            "accept_es": [
+              "Yo tengo tos"
+            ]
+          },
+          {
+            "id": "u12-l2-08",
+            "es": "Estoy resfriado",
+            "ko": "나 감기 걸렸어 (남성)",
+            "accept_es": [
+              "Estoy constipado"
+            ],
+            "note": "스페인에서는 constipado도 '감기 걸린'이라는 뜻입니다."
+          },
+          {
+            "id": "u12-l2-09",
+            "es": "¿Qué te pasa?",
+            "ko": "무슨 일이야?"
+          },
+          {
+            "id": "u12-l2-10",
+            "es": "¿Te duele?",
+            "ko": "아파?"
+          }
+        ]
+      },
+      {
+        "id": "u12-l3",
+        "title": "약국과 병원",
+        "items": [
+          {
+            "id": "u12-l3-01",
+            "es": "Necesito un médico",
+            "ko": "나는 의사가 필요해",
+            "accept_es": [
+              "Yo necesito un médico"
+            ]
+          },
+          {
+            "id": "u12-l3-02",
+            "es": "Tengo cita con el médico",
+            "ko": "나 병원 예약 있어",
+            "note": "cita는 '예약, 약속'입니다."
+          },
+          {
+            "id": "u12-l3-03",
+            "es": "¿Tiene algo para la tos?",
+            "ko": "기침에 먹는 약 있어요?"
+          },
+          {
+            "id": "u12-l3-04",
+            "es": "Tome esta pastilla",
+            "ko": "이 알약을 드세요",
+            "note": "tome는 usted에게 하는 권유·명령 형태입니다."
+          },
+          {
+            "id": "u12-l3-05",
+            "es": "Dos veces al día",
+            "ko": "하루에 두 번"
+          },
+          {
+            "id": "u12-l3-06",
+            "es": "Después de comer",
+            "ko": "식후에",
+            "accept_es": [
+              "Después de las comidas"
+            ]
+          },
+          {
+            "id": "u12-l3-07",
+            "es": "Llama a una ambulancia",
+            "ko": "구급차 불러",
+            "accept_es": [
+              "Llama una ambulancia"
+            ]
+          },
+          {
+            "id": "u12-l3-08",
+            "es": "Me siento mejor",
+            "ko": "나 좀 나아졌어",
+            "accept_es": [
+              "Ya me siento mejor"
+            ],
+            "note": "sentirse는 몸이나 기분 상태를 말할 때 씁니다."
+          },
+          {
+            "id": "u12-l3-09",
+            "es": "¡Que te mejores!",
+            "ko": "빨리 낫길 바라!",
+            "note": "아픈 사람에게 건네는 인사입니다."
+          },
+          {
+            "id": "u12-l3-10",
+            "es": "Bebe mucha agua",
+            "ko": "물 많이 마셔",
+            "note": "bebe는 tú에게 하는 권유·명령 형태입니다."
+          }
+        ]
+      }
+    ]
   }
 ]

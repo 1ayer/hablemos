@@ -278,3 +278,7 @@ p { margin: 0; }
 .file-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; cursor: pointer; }
 .file-btn:has(input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 2px; }
 .banner.info { background: var(--accent-soft); }
+.guide { border: 1.5px solid var(--rule); border-radius: var(--radius); padding: 10px 14px; background: var(--surface); }
+.guide summary { cursor: pointer; font-weight: 600; min-height: 32px; display: flex; align-items: center; }
+.guide ol { margin: 8px 0 4px; padding-left: 1.3em; display: grid; gap: 6px; font-size: 0.95rem; }
+.guide a { color: var(--accent); }
