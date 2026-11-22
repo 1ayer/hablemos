@@ -14,9 +14,18 @@ const PROMPT: Partial<Record<ExerciseType, string>> = {
   translate: '스페인어로 쓰세요',
 }
 
-type Props = { lesson: Lesson; pool: Item[]; onExit: () => void; onFinish: (s: Session) => void }
+type Props = {
+  lesson: Lesson
+  pool: Item[]
+  /** null when the heart limit is lifted for this lesson. */
+  heartsLeft: number | null
+  onWrong: () => void
+  onFail: () => void
+  onExit: () => void
+  onFinish: (s: Session) => void
+}
 
-export default function LessonView({ lesson, pool, onExit, onFinish }: Props) {
+export default function LessonView({ lesson, pool, heartsLeft, onWrong, onFail, onExit, onFinish }: Props) {
   const [session, setSession] = useState(() => startSession(buildLesson(lesson.items, pool, AVAILABLE)))
   const [picked, setPicked] = useState<string | null>(null) // choice: option item id
   const [built, setBuilt] = useState<number[]>([]) // assemble: tile indexes in order
@@ -29,13 +38,20 @@ export default function LessonView({ lesson, pool, onExit, onFinish }: Props) {
   const ready = ex.options ? picked !== null : ex.tiles ? built.length > 0 : text.trim() !== ''
   const esPrompt = ex.type === 'choice_es_ko'
 
+  // Only a first-try miss costs a heart, charged at check time so leaving the lesson can't dodge it.
+  const costsHeart = !!result && !result.correct && !ex.retry && heartsLeft !== null
+  const outOfHearts = costsHeart && heartsLeft === 0
+
   function check() {
-    if (ex.options) setResult({ correct: picked === ex.item.id })
-    else if (ex.tiles) setResult(gradeTyped(built.map((i) => ex.tiles![i]).join(' '), answersOf(ex.item)))
-    else setResult(gradeTyped(text, answersOf(ex.item)))
+    const g = ex.options
+      ? { correct: picked === ex.item.id }
+      : gradeTyped(ex.tiles ? built.map((i) => ex.tiles![i]).join(' ') : text, answersOf(ex.item))
+    setResult(g)
+    if (!g.correct && !ex.retry && heartsLeft !== null) onWrong()
   }
 
   function next() {
+    if (outOfHearts) return onFail()
     const s = answer(session, result!.correct)
     setPicked(null)
     setBuilt([])
@@ -99,6 +115,7 @@ export default function LessonView({ lesson, pool, onExit, onFinish }: Props) {
         <span className="count">
           {done}/{total}
         </span>
+        <span className="lesson-hearts">{heartsLeft === null ? '하트 제한 없음' : `하트 ${heartsLeft}`}</span>
       </header>
 
       <form className="lesson-body" onSubmit={submit}>
@@ -191,11 +208,12 @@ export default function LessonView({ lesson, pool, onExit, onFinish }: Props) {
                   {ex.item.ko}
                 </p>
                 {ex.item.note && <p className="note">{ex.item.note}</p>}
+                {costsHeart && <p className="heart-loss">{outOfHearts ? '하트를 모두 썼습니다.' : `하트 1개를 잃었습니다. ${heartsLeft}개 남았습니다.`}</p>}
               </div>
             )}
           </div>
           <button ref={primaryRef} type="submit" className="primary" aria-disabled={!result && !ready}>
-            {result ? '계속' : '확인'}
+            {outOfHearts ? '레슨 끝내기' : result ? '계속' : '확인'}
           </button>
         </footer>
       </form>
