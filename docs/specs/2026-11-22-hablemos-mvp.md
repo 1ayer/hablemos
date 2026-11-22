@@ -140,8 +140,10 @@
 src/content/units.json
 Unit   { id, title, description, lessons: Lesson[] }
 Lesson { id, title, items: Item[] }
-Item   { id, es, ko, accept_es?: string[], types: ExerciseType[], note? }
+Item   { id, es, ko, accept_es?: string[], types?: ExerciseType[], note? }
 ```
+
+- `types`를 생략하면 §5의 조건을 만족하는 모든 유형을 쓴다. 특정 유형을 막을 때만 적는다.
 
 - `note`에는 스페인 특유 표현, 성·관사, ser/estar, 발음(c·z의 [θ]) 같은 메모를 짧게 적는다.
 - 한국어 문장 작성 규칙(정답이 하나로 정해지게):
