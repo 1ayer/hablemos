@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { gradeTyped, normalize, tokens } from './grade'
+import { gradeTyped, judgeSpeech, normalize, tokens } from './grade'
 
 describe('normalize', () => {
   it('lowercases, drops punctuation, keeps word boundaries', () => {
@@ -34,5 +34,28 @@ describe('tokens', () => {
   it('splits into tiles without punctuation, keeping spelling', () => {
     expect(tokens('¿Cómo te llamas?')).toEqual(['Cómo', 'te', 'llamas'])
     expect(tokens('Bien, gracias')).toEqual(['Bien', 'gracias'])
+  })
+})
+
+describe('judgeSpeech', () => {
+  it('accepts exact recognition regardless of case, punctuation and accents', () => {
+    expect(judgeSpeech(['como estas'], '¿Cómo estás?')).toEqual({ correct: true, heard: 'como estas' })
+  })
+  it('needs every word for sentences of four words or fewer', () => {
+    expect(judgeSpeech(['hasta'], 'Hasta luego').correct).toBe(false)
+    expect(judgeSpeech(['una mesa para dos por favor'], 'Una mesa para dos, por favor').correct).toBe(true)
+  })
+  it('allows one edit per five words and counts extra words', () => {
+    expect(judgeSpeech(['una mesa para dos por favor'], 'Una mesa para dos personas, por favor').correct).toBe(true) // 7 words, 1 missing
+    expect(judgeSpeech(['hola una mesa para dos personas por favor ya'], 'Una mesa para dos personas, por favor').correct).toBe(false) // 2 extra
+  })
+  it('reads recognizer digits as the spelled-out curriculum words', () => {
+    expect(judgeSpeech(['una mesa para 2 por favor'], 'Una mesa para dos, por favor').correct).toBe(true)
+    expect(judgeSpeech(['1 café por favor'], 'Un café, por favor').correct).toBe(true)
+  })
+  it('passes if any alternative matches, and reports the first one otherwise', () => {
+    expect(judgeSpeech(['oye la', 'hola'], 'Hola')).toEqual({ correct: true, heard: 'hola' })
+    expect(judgeSpeech(['adiós', 'a dios'], 'Hola')).toEqual({ correct: false, heard: 'adiós' })
+    expect(judgeSpeech([], 'Hola')).toEqual({ correct: false, heard: '' })
   })
 })

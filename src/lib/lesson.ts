@@ -67,16 +67,18 @@ function tilesFor(item: Item, pool: Item[], rand: Rand): string[] {
  * the device can run now, sorted recognition → assemble → production.
  */
 export function buildLesson(items: Item[], pool: Item[], available: ExerciseType[], rand: Rand = Math.random): Exercise[] {
-  const exercises = shuffle(items, rand).map((item): Exercise => {
-    const wrong = distractors(item, pool, 3, rand)
-    let types = itemTypes(item).filter((t) => available.includes(t))
-    if (wrong.length < 2) types = types.filter((t) => !CHOICE.includes(t))
-    const type = types.length ? types[Math.floor(rand() * types.length)] : 'translate'
-    if (CHOICE.includes(type)) return { type, item, options: shuffle([item, ...wrong], rand), retry: false }
-    if (type === 'assemble') return { type, item, tiles: tilesFor(item, pool, rand), retry: false }
-    return { type, item, retry: false }
-  })
+  const exercises = shuffle(items, rand).map((item) => buildOne(item, pool, available, rand))
   return exercises.sort((a, b) => ORDER[a.type] - ORDER[b.type])
+}
+
+function buildOne(item: Item, pool: Item[], available: ExerciseType[], rand: Rand): Exercise {
+  const wrong = distractors(item, pool, 3, rand)
+  let types = itemTypes(item).filter((t) => available.includes(t))
+  if (wrong.length < 2) types = types.filter((t) => !CHOICE.includes(t))
+  const type = types.length ? types[Math.floor(rand() * types.length)] : 'translate'
+  if (CHOICE.includes(type)) return { type, item, options: shuffle([item, ...wrong], rand), retry: false }
+  if (type === 'assemble') return { type, item, tiles: tilesFor(item, pool, rand), retry: false }
+  return { type, item, retry: false }
 }
 
 export type Session = {
@@ -104,4 +106,16 @@ export function answer(s: Session, correct: boolean, requeue = true): Session {
     graded: s.graded + 1,
     firstWrong: s.firstWrong + (correct ? 0 : 1),
   }
+}
+
+/** Moves past the current exercise without grading it (counts toward nothing). */
+export const skip = (s: Session): Session => ({ ...s, pos: s.pos + 1 })
+
+/** Re-types the current and remaining exercises of type `drop`, e.g. after "can't speak now". */
+export function retypeRemaining(s: Session, drop: ExerciseType, pool: Item[], available: ExerciseType[], rand: Rand = Math.random): Session {
+  const avail = available.filter((t) => t !== drop)
+  const queue = s.queue.map((ex, i) =>
+    i < s.pos || ex.type !== drop ? ex : { ...buildOne(ex.item, pool, avail, rand), retry: ex.retry },
+  )
+  return { ...s, queue }
 }

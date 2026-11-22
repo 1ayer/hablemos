@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
-import { lessons, units, type Item, type Lesson } from './content'
+import { lessons, units, type ExerciseType, type Item, type Lesson } from './content'
 import LessonView from './LessonView'
 import { lessonStates, lessonXp, localDate, shownStreak, touchStreak } from './lib/game'
 import type { Session } from './lib/lesson'
+import { canRecognize, pickVoice, type Voice } from './lib/speech'
 import { dueIds, missItem, registerItems, reviewCard, upcomingIds } from './lib/srs'
 import { STATE_KEY, load, save, type State } from './lib/state'
 
@@ -25,6 +26,8 @@ function storage(): Pick<Storage, 'getItem' | 'setItem'> {
   }
 }
 
+const BASE_TYPES: ExerciseType[] = ['choice_es_ko', 'choice_ko_es', 'assemble', 'translate']
+
 const DONE_TITLE: Record<Kind, string> = { lesson: '레슨을 마쳤습니다', review: '복습을 마쳤습니다', practice: '연습을 마쳤습니다' }
 
 export default function App() {
@@ -33,6 +36,12 @@ export default function App() {
   const [recovered, setRecovered] = useState(boot.recovered)
   const [saveFailed, setSaveFailed] = useState(false)
   const [screen, setScreen] = useState<Screen>({ name: 'home' })
+  const [voice, setVoice] = useState<Voice | undefined>(undefined) // undefined while voices load
+  const [micBlocked, setMicBlocked] = useState(false)
+
+  useEffect(() => {
+    pickVoice().then(setVoice)
+  }, [])
 
   useEffect(() => setSaveFailed(!save(storage(), state)), [state])
 
@@ -46,6 +55,13 @@ export default function App() {
   }, [])
 
   const today = localDate(new Date())
+  const audioOn = state.settings.audio
+  // Checked when a session starts, so going offline mid-session only affects the next one.
+  const available: ExerciseType[] = [
+    ...BASE_TYPES,
+    ...(audioOn && voice ? (['listen_choice', 'dictation'] as const) : []),
+    ...(audioOn && canRecognize() && !micBlocked ? (['speak'] as const) : []),
+  ]
 
   const banners = (
     <>
@@ -70,6 +86,9 @@ export default function App() {
       <LessonView
         items={items}
         pool={learned}
+        available={available}
+        voice={voice ?? null}
+        onMicBlocked={() => setMicBlocked(true)}
         requeue={kind === 'lesson'}
         onFirstAnswer={(id, correct) => {
           if (kind === 'lesson' && !correct) setState((s) => ({ ...s, cards: missItem(s.cards, id, today) }))
@@ -128,6 +147,11 @@ export default function App() {
           <div><dt>XP</dt><dd>{state.xp}</dd></div>
         </dl>
       </header>
+
+      {audioOn && voice === null && <p className="voice-note muted">이 기기에 스페인어 음성이 없어 듣기 문제는 내지 않습니다.</p>}
+      {audioOn && voice && !voice.exact && (
+        <p className="voice-note muted">스페인(es-ES) 음성이 없어 다른 스페인어 음성({voice.voice.lang})으로 읽습니다.</p>
+      )}
 
       {due.length > 0 && (
         <section className="review-bar" aria-label="복습">

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { ExerciseType, Item } from '../content'
-import { answer, buildLesson, currentExercise, distractors, isDone, startSession } from './lesson'
+import { answer, buildLesson, currentExercise, distractors, isDone, retypeRemaining, skip, startSession } from './lesson'
 
 // Deterministic pseudo-random sequence for reproducible tests.
 function seeded(seed = 1) {
@@ -71,5 +71,20 @@ describe('session', () => {
     s = answer(s, false) // missed retry is not repeated again
     expect(isDone(s)).toBe(true)
     expect(s).toMatchObject({ graded: 2, firstWrong: 1 })
+  })
+})
+
+describe('skip and retype', () => {
+  it('skipping does not grade or repeat', () => {
+    const s = skip(startSession(buildLesson(pool.slice(0, 2), pool, ['translate'], seeded(1))))
+    expect(s).toMatchObject({ pos: 1, graded: 0, firstWrong: 0 })
+    expect(s.queue).toHaveLength(2)
+  })
+  it('re-types the current and later speak exercises only', () => {
+    let s = startSession(buildLesson(pool, pool, ['speak'], seeded(4)))
+    s = answer(s, true)
+    s = retypeRemaining(s, 'speak', pool, ['speak', 'translate'], seeded(5))
+    expect(s.queue[0].type).toBe('speak')
+    expect(s.queue.slice(1).every((e) => e.type === 'translate')).toBe(true)
   })
 })

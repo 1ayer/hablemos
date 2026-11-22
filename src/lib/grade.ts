@@ -26,3 +26,41 @@ export function gradeTyped(input: string, answers: string[]): Grade {
 export function tokens(s: string): string[] {
   return s.split(/\s+/).map((t) => t.replace(PUNCT, '')).filter(Boolean)
 }
+
+// Recognizers often return digits; the curriculum spells numbers out (accents already stripped).
+const NUMBER_WORDS = [
+  'cero', 'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve', 'diez',
+  'once', 'doce', 'trece', 'catorce', 'quince', 'dieciseis', 'diecisiete', 'dieciocho', 'diecinueve', 'veinte',
+]
+const ONE = new Set(['un', 'una', 'uno'])
+
+function speechWords(s: string): string[] {
+  return stripAccents(normalize(s))
+    .split(' ')
+    .filter(Boolean)
+    .map((w) => (/^\d+$/.test(w) && Number(w) <= 20 && w !== '1' ? NUMBER_WORDS[Number(w)] : w))
+}
+
+const sameWord = (heard: string, want: string) => heard === want || (heard === '1' && ONE.has(want))
+
+/** Word-level edit distance (insertions, deletions, substitutions each cost 1). */
+export function wordDistance(heard: string[], want: string[]): number {
+  let prev = want.map((_, j) => j + 1)
+  prev.unshift(0)
+  for (let i = 1; i <= heard.length; i++) {
+    const row = [i]
+    for (let j = 1; j <= want.length; j++) {
+      row[j] = Math.min(prev[j] + 1, row[j - 1] + 1, prev[j - 1] + (sameWord(heard[i - 1], want[j - 1]) ? 0 : 1))
+    }
+    prev = row
+  }
+  return prev[want.length]
+}
+
+/** Spec §5: correct if any alternative is within floor(0.2 × target words) edits. */
+export function judgeSpeech(alternatives: string[], target: string): { correct: boolean; heard: string } {
+  const want = speechWords(target)
+  const limit = Math.floor(0.2 * want.length)
+  const hit = alternatives.find((a) => wordDistance(speechWords(a), want) <= limit)
+  return { correct: hit !== undefined, heard: hit ?? alternatives[0] ?? '' }
+}
