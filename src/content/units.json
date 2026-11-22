@@ -928,5 +928,942 @@
         ]
       }
     ]
+  },
+  {
+    "id": "u5",
+    "title": "길과 장소",
+    "description": "도시의 장소, 길 묻기, 교통수단과 이동",
+    "lessons": [
+      {
+        "id": "u5-l1",
+        "title": "도시의 장소",
+        "items": [
+          {
+            "id": "u5-l1-01",
+            "es": "el banco",
+            "ko": "은행",
+            "accept_es": [
+              "banco"
+            ]
+          },
+          {
+            "id": "u5-l1-02",
+            "es": "la farmacia",
+            "ko": "약국",
+            "accept_es": [
+              "farmacia"
+            ]
+          },
+          {
+            "id": "u5-l1-03",
+            "es": "la estación",
+            "ko": "역",
+            "accept_es": [
+              "estación"
+            ],
+            "note": "-ción으로 끝나는 명사는 여성입니다."
+          },
+          {
+            "id": "u5-l1-04",
+            "es": "el museo",
+            "ko": "박물관",
+            "accept_es": [
+              "museo"
+            ]
+          },
+          {
+            "id": "u5-l1-05",
+            "es": "la playa",
+            "ko": "해변",
+            "accept_es": [
+              "playa"
+            ]
+          },
+          {
+            "id": "u5-l1-06",
+            "es": "el supermercado",
+            "ko": "슈퍼마켓",
+            "accept_es": [
+              "supermercado"
+            ]
+          },
+          {
+            "id": "u5-l1-07",
+            "es": "el hotel",
+            "ko": "호텔",
+            "accept_es": [
+              "hotel"
+            ],
+            "note": "h는 소리 내지 않습니다."
+          },
+          {
+            "id": "u5-l1-08",
+            "es": "Hay un bar aquí",
+            "ko": "여기에 바가 하나 있어",
+            "accept_es": [
+              "Aquí hay un bar"
+            ],
+            "note": "hay는 '~이 있다'로, 무엇이 있는지 없는지 처음 말할 때 씁니다."
+          },
+          {
+            "id": "u5-l1-09",
+            "es": "No hay farmacia",
+            "ko": "약국이 없어",
+            "accept_es": [
+              "No hay una farmacia"
+            ]
+          },
+          {
+            "id": "u5-l1-10",
+            "es": "¿Hay un banco cerca?",
+            "ko": "근처에 은행 있어?",
+            "accept_es": [
+              "¿Hay algún banco cerca?"
+            ],
+            "note": "cerca는 '근처에'입니다."
+          }
+        ]
+      },
+      {
+        "id": "u5-l2",
+        "title": "길 묻기",
+        "items": [
+          {
+            "id": "u5-l2-01",
+            "es": "¿Dónde está la estación?",
+            "ko": "역이 어디에 있어?",
+            "note": "정해진 장소의 위치는 estar로 묻습니다."
+          },
+          {
+            "id": "u5-l2-02",
+            "es": "¿Dónde está el museo?",
+            "ko": "박물관이 어디에 있어?"
+          },
+          {
+            "id": "u5-l2-03",
+            "es": "Está a la derecha",
+            "ko": "오른쪽에 있어"
+          },
+          {
+            "id": "u5-l2-04",
+            "es": "Está a la izquierda",
+            "ko": "왼쪽에 있어"
+          },
+          {
+            "id": "u5-l2-05",
+            "es": "Todo recto",
+            "ko": "쭉 직진",
+            "accept_es": [
+              "Siga todo recto",
+              "Sigue todo recto"
+            ],
+            "note": "스페인에서 '곧장 가세요'라고 할 때 흔히 씁니다."
+          },
+          {
+            "id": "u5-l2-06",
+            "es": "Está cerca",
+            "ko": "가까이 있어"
+          },
+          {
+            "id": "u5-l2-07",
+            "es": "Está lejos",
+            "ko": "멀리 있어"
+          },
+          {
+            "id": "u5-l2-08",
+            "es": "Perdone, ¿dónde está el baño?",
+            "ko": "실례합니다, 화장실이 어디에 있어요?",
+            "accept_es": [
+              "Perdone, ¿dónde están los servicios?"
+            ],
+            "note": "perdone는 usted에게 쓰는 말입니다. 스페인에서는 화장실을 servicios, aseos라고도 합니다."
+          },
+          {
+            "id": "u5-l2-09",
+            "es": "La primera calle a la derecha",
+            "ko": "첫 번째 길에서 오른쪽"
+          },
+          {
+            "id": "u5-l2-10",
+            "es": "Gracias, muy amable",
+            "ko": "고마워요, 친절하시네요"
+          }
+        ]
+      },
+      {
+        "id": "u5-l3",
+        "title": "이동하기",
+        "items": [
+          {
+            "id": "u5-l3-01",
+            "es": "Voy al banco",
+            "ko": "나는 은행에 가",
+            "accept_es": [
+              "Yo voy al banco"
+            ],
+            "note": "a와 el이 만나면 al이 됩니다."
+          },
+          {
+            "id": "u5-l3-02",
+            "es": "Vamos a la playa",
+            "ko": "우리 해변에 가",
+            "accept_es": [
+              "Nosotros vamos a la playa"
+            ]
+          },
+          {
+            "id": "u5-l3-03",
+            "es": "¿Adónde vas?",
+            "ko": "너 어디 가?",
+            "accept_es": [
+              "¿A dónde vas?",
+              "¿Adónde vas tú?"
+            ]
+          },
+          {
+            "id": "u5-l3-04",
+            "es": "Voy a casa",
+            "ko": "나 집에 가",
+            "accept_es": [
+              "Me voy a casa"
+            ],
+            "note": "'집에'는 관사 없이 a casa라고 합니다."
+          },
+          {
+            "id": "u5-l3-05",
+            "es": "Voy en metro",
+            "ko": "나는 지하철로 가",
+            "accept_es": [
+              "Yo voy en metro"
+            ],
+            "note": "교통수단은 en으로 말합니다."
+          },
+          {
+            "id": "u5-l3-06",
+            "es": "Voy a pie",
+            "ko": "나는 걸어서 가",
+            "accept_es": [
+              "Yo voy a pie"
+            ],
+            "note": "'걸어서'만 en이 아니라 a pie입니다."
+          },
+          {
+            "id": "u5-l3-07",
+            "es": "¿Vais en autobús?",
+            "ko": "(너희) 버스로 가?",
+            "accept_es": [
+              "¿Vosotros vais en autobús?"
+            ]
+          },
+          {
+            "id": "u5-l3-08",
+            "es": "El tren sale a las nueve",
+            "ko": "기차는 9시에 출발해"
+          },
+          {
+            "id": "u5-l3-09",
+            "es": "Un billete para Madrid, por favor",
+            "ko": "마드리드행 표 한 장 주세요",
+            "note": "표는 스페인에서 billete, 중남미에서는 boleto라고 합니다."
+          },
+          {
+            "id": "u5-l3-10",
+            "es": "¿Cuánto cuesta el billete?",
+            "ko": "표가 얼마예요?",
+            "accept_es": [
+              "¿Cuánto es el billete?"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "u6",
+    "title": "하루 일과",
+    "description": "요일, 하루 일과, 얼마나 자주 하는지와 계획 말하기",
+    "lessons": [
+      {
+        "id": "u6-l1",
+        "title": "요일",
+        "items": [
+          {
+            "id": "u6-l1-01",
+            "es": "el lunes",
+            "ko": "월요일",
+            "accept_es": [
+              "lunes"
+            ],
+            "note": "요일은 소문자로 씁니다."
+          },
+          {
+            "id": "u6-l1-02",
+            "es": "el martes",
+            "ko": "화요일",
+            "accept_es": [
+              "martes"
+            ]
+          },
+          {
+            "id": "u6-l1-03",
+            "es": "el miércoles",
+            "ko": "수요일",
+            "accept_es": [
+              "miércoles"
+            ]
+          },
+          {
+            "id": "u6-l1-04",
+            "es": "el jueves",
+            "ko": "목요일",
+            "accept_es": [
+              "jueves"
+            ]
+          },
+          {
+            "id": "u6-l1-05",
+            "es": "el viernes",
+            "ko": "금요일",
+            "accept_es": [
+              "viernes"
+            ]
+          },
+          {
+            "id": "u6-l1-06",
+            "es": "el sábado",
+            "ko": "토요일",
+            "accept_es": [
+              "sábado"
+            ]
+          },
+          {
+            "id": "u6-l1-07",
+            "es": "el domingo",
+            "ko": "일요일",
+            "accept_es": [
+              "domingo"
+            ]
+          },
+          {
+            "id": "u6-l1-08",
+            "es": "¿Qué día es hoy?",
+            "ko": "오늘 무슨 요일이야?"
+          },
+          {
+            "id": "u6-l1-09",
+            "es": "Hoy es lunes",
+            "ko": "오늘은 월요일이야"
+          },
+          {
+            "id": "u6-l1-10",
+            "es": "Mañana es sábado",
+            "ko": "내일은 토요일이야",
+            "note": "mañana는 '내일'이고, la mañana는 '아침'입니다."
+          }
+        ]
+      },
+      {
+        "id": "u6-l2",
+        "title": "하루 일과",
+        "items": [
+          {
+            "id": "u6-l2-01",
+            "es": "Me levanto a las siete",
+            "ko": "나는 7시에 일어나",
+            "accept_es": [
+              "Yo me levanto a las siete"
+            ],
+            "note": "levantarse처럼 me, te, se가 함께 붙는 동사가 있습니다."
+          },
+          {
+            "id": "u6-l2-02",
+            "es": "Desayuno en casa",
+            "ko": "나는 집에서 아침을 먹어",
+            "accept_es": [
+              "Yo desayuno en casa"
+            ],
+            "note": "desayunar는 '아침을 먹다'입니다."
+          },
+          {
+            "id": "u6-l2-03",
+            "es": "Trabajo en una oficina",
+            "ko": "나는 사무실에서 일해",
+            "accept_es": [
+              "Yo trabajo en una oficina"
+            ]
+          },
+          {
+            "id": "u6-l2-04",
+            "es": "Como a las dos",
+            "ko": "나는 2시에 점심을 먹어",
+            "accept_es": [
+              "Yo como a las dos"
+            ],
+            "note": "스페인에서 comer는 '점심을 먹다'로 많이 쓰고, 점심은 보통 2시쯤입니다."
+          },
+          {
+            "id": "u6-l2-05",
+            "es": "Ceno a las nueve",
+            "ko": "나는 9시에 저녁을 먹어",
+            "accept_es": [
+              "Yo ceno a las nueve"
+            ],
+            "note": "스페인에서는 저녁을 9시 넘어 먹는 일이 흔합니다."
+          },
+          {
+            "id": "u6-l2-06",
+            "es": "Estudio español",
+            "ko": "나는 스페인어를 공부해",
+            "accept_es": [
+              "Yo estudio español"
+            ]
+          },
+          {
+            "id": "u6-l2-07",
+            "es": "Vuelvo a casa a las seis",
+            "ko": "나는 6시에 집에 돌아와",
+            "accept_es": [
+              "Yo vuelvo a casa a las seis"
+            ]
+          },
+          {
+            "id": "u6-l2-08",
+            "es": "Me acuesto tarde",
+            "ko": "나는 늦게 자",
+            "accept_es": [
+              "Yo me acuesto tarde"
+            ],
+            "note": "acostarse는 '잠자리에 들다'입니다."
+          },
+          {
+            "id": "u6-l2-09",
+            "es": "¿A qué hora te levantas?",
+            "ko": "너는 몇 시에 일어나?"
+          },
+          {
+            "id": "u6-l2-10",
+            "es": "Los domingos descanso",
+            "ko": "일요일마다 나는 쉬어",
+            "accept_es": [
+              "Descanso los domingos"
+            ],
+            "note": "los + 요일은 '매주 그 요일마다'입니다."
+          }
+        ]
+      },
+      {
+        "id": "u6-l3",
+        "title": "자주, 그리고 계획",
+        "items": [
+          {
+            "id": "u6-l3-01",
+            "es": "Siempre desayuno en casa",
+            "ko": "나는 항상 집에서 아침을 먹어"
+          },
+          {
+            "id": "u6-l3-02",
+            "es": "Nunca trabajo los sábados",
+            "ko": "나는 토요일에는 절대 일하지 않아",
+            "accept_es": [
+              "No trabajo nunca los sábados"
+            ]
+          },
+          {
+            "id": "u6-l3-03",
+            "es": "A veces voy al gimnasio",
+            "ko": "나는 가끔 헬스장에 가",
+            "accept_es": [
+              "Voy al gimnasio a veces"
+            ]
+          },
+          {
+            "id": "u6-l3-04",
+            "es": "Estudio todos los días",
+            "ko": "나는 매일 공부해",
+            "accept_es": [
+              "Todos los días estudio"
+            ]
+          },
+          {
+            "id": "u6-l3-05",
+            "es": "Esta tarde voy al cine",
+            "ko": "오늘 오후에 나는 영화관에 가",
+            "accept_es": [
+              "Voy al cine esta tarde"
+            ]
+          },
+          {
+            "id": "u6-l3-06",
+            "es": "Voy a comer con mi madre",
+            "ko": "나는 우리 어머니와 점심을 먹을 거야",
+            "note": "ir a + 동사원형은 '~할 것이다'입니다."
+          },
+          {
+            "id": "u6-l3-07",
+            "es": "¿Qué haces mañana?",
+            "ko": "너 내일 뭐 해?"
+          },
+          {
+            "id": "u6-l3-08",
+            "es": "Mañana voy a trabajar",
+            "ko": "나는 내일 일할 거야",
+            "accept_es": [
+              "Voy a trabajar mañana"
+            ]
+          },
+          {
+            "id": "u6-l3-09",
+            "es": "el fin de semana",
+            "ko": "주말",
+            "accept_es": [
+              "fin de semana"
+            ]
+          },
+          {
+            "id": "u6-l3-10",
+            "es": "¿Qué vais a hacer?",
+            "ko": "(너희) 뭐 할 거야?",
+            "accept_es": [
+              "¿Qué vais a hacer vosotros?"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "u7",
+    "title": "쇼핑과 옷",
+    "description": "색깔, 옷 이름, 가게에서 묻고 계산하기",
+    "lessons": [
+      {
+        "id": "u7-l1",
+        "title": "색깔",
+        "items": [
+          {
+            "id": "u7-l1-01",
+            "es": "rojo",
+            "ko": "빨간색",
+            "accept_es": [
+              "roja"
+            ],
+            "note": "색 형용사는 꾸미는 명사의 성을 따릅니다(rojo, roja)."
+          },
+          {
+            "id": "u7-l1-02",
+            "es": "azul",
+            "ko": "파란색",
+            "note": "-l로 끝나는 색은 남녀 형태가 같습니다."
+          },
+          {
+            "id": "u7-l1-03",
+            "es": "verde",
+            "ko": "초록색"
+          },
+          {
+            "id": "u7-l1-04",
+            "es": "amarillo",
+            "ko": "노란색",
+            "accept_es": [
+              "amarilla"
+            ]
+          },
+          {
+            "id": "u7-l1-05",
+            "es": "negro",
+            "ko": "검은색",
+            "accept_es": [
+              "negra"
+            ]
+          },
+          {
+            "id": "u7-l1-06",
+            "es": "blanco",
+            "ko": "흰색",
+            "accept_es": [
+              "blanca"
+            ]
+          },
+          {
+            "id": "u7-l1-07",
+            "es": "gris",
+            "ko": "회색"
+          },
+          {
+            "id": "u7-l1-08",
+            "es": "rosa",
+            "ko": "분홍색"
+          },
+          {
+            "id": "u7-l1-09",
+            "es": "marrón",
+            "ko": "갈색",
+            "note": "스페인에서는 갈색을 marrón이라고 합니다."
+          },
+          {
+            "id": "u7-l1-10",
+            "es": "¿De qué color es?",
+            "ko": "무슨 색이야?"
+          }
+        ]
+      },
+      {
+        "id": "u7-l2",
+        "title": "옷",
+        "items": [
+          {
+            "id": "u7-l2-01",
+            "es": "la camisa",
+            "ko": "셔츠",
+            "accept_es": [
+              "camisa"
+            ]
+          },
+          {
+            "id": "u7-l2-02",
+            "es": "los pantalones",
+            "ko": "바지",
+            "accept_es": [
+              "pantalones"
+            ],
+            "note": "스페인어에서는 바지를 보통 복수로 씁니다."
+          },
+          {
+            "id": "u7-l2-03",
+            "es": "la falda",
+            "ko": "치마",
+            "accept_es": [
+              "falda"
+            ]
+          },
+          {
+            "id": "u7-l2-04",
+            "es": "los zapatos",
+            "ko": "신발",
+            "accept_es": [
+              "zapatos"
+            ]
+          },
+          {
+            "id": "u7-l2-05",
+            "es": "la chaqueta",
+            "ko": "재킷",
+            "accept_es": [
+              "chaqueta"
+            ]
+          },
+          {
+            "id": "u7-l2-06",
+            "es": "el jersey",
+            "ko": "스웨터",
+            "accept_es": [
+              "jersey"
+            ],
+            "note": "스페인에서 스웨터는 jersey라고 하고, j는 '흐' 소리입니다."
+          },
+          {
+            "id": "u7-l2-07",
+            "es": "Una camisa blanca",
+            "ko": "흰 셔츠 하나",
+            "note": "색은 명사 뒤에 옵니다."
+          },
+          {
+            "id": "u7-l2-08",
+            "es": "Unos zapatos negros",
+            "ko": "검은 신발 한 켤레",
+            "note": "unos, unas는 신발처럼 짝을 이루는 것에도 씁니다."
+          },
+          {
+            "id": "u7-l2-09",
+            "es": "Llevo una chaqueta azul",
+            "ko": "나는 파란 재킷을 입고 있어",
+            "accept_es": [
+              "Yo llevo una chaqueta azul"
+            ],
+            "note": "llevar는 '입고 있다, 가지고 다니다'입니다."
+          },
+          {
+            "id": "u7-l2-10",
+            "es": "Me gusta esta falda",
+            "ko": "나는 이 치마가 마음에 들어"
+          }
+        ]
+      },
+      {
+        "id": "u7-l3",
+        "title": "가게에서",
+        "items": [
+          {
+            "id": "u7-l3-01",
+            "es": "¿Cuánto cuesta esta camisa?",
+            "ko": "이 셔츠 얼마예요?",
+            "accept_es": [
+              "¿Cuánto es esta camisa?"
+            ]
+          },
+          {
+            "id": "u7-l3-02",
+            "es": "Cuesta veinte euros",
+            "ko": "20유로예요",
+            "accept_es": [
+              "Son veinte euros"
+            ]
+          },
+          {
+            "id": "u7-l3-03",
+            "es": "Es muy caro",
+            "ko": "아주 비싸"
+          },
+          {
+            "id": "u7-l3-04",
+            "es": "Es barato",
+            "ko": "싸"
+          },
+          {
+            "id": "u7-l3-05",
+            "es": "¿Tiene otra talla?",
+            "ko": "다른 사이즈 있어요?",
+            "note": "tiene는 usted에게 묻는 형태입니다."
+          },
+          {
+            "id": "u7-l3-06",
+            "es": "¿Puedo pagar con tarjeta?",
+            "ko": "카드로 계산해도 돼요?"
+          },
+          {
+            "id": "u7-l3-07",
+            "es": "¿Puedo pagar en efectivo?",
+            "ko": "현금으로 계산해도 돼요?"
+          },
+          {
+            "id": "u7-l3-08",
+            "es": "Solo estoy mirando, gracias",
+            "ko": "그냥 구경하는 중이에요, 감사합니다",
+            "accept_es": [
+              "Sólo estoy mirando, gracias"
+            ]
+          },
+          {
+            "id": "u7-l3-09",
+            "es": "¿Tiene una bolsa?",
+            "ko": "봉투 있어요?"
+          },
+          {
+            "id": "u7-l3-10",
+            "es": "Aquí tiene",
+            "ko": "여기 있어요",
+            "note": "물건이나 돈을 건넬 때 usted에게 하는 말입니다."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "u8",
+    "title": "날씨와 계절",
+    "description": "날씨 말하기, 계절과 달, 날씨 이야기",
+    "lessons": [
+      {
+        "id": "u8-l1",
+        "title": "날씨",
+        "items": [
+          {
+            "id": "u8-l1-01",
+            "es": "¿Qué tiempo hace?",
+            "ko": "날씨 어때?",
+            "note": "날씨는 hacer로 말합니다. tiempo는 '시간'과 '날씨' 두 뜻입니다."
+          },
+          {
+            "id": "u8-l1-02",
+            "es": "Hace calor",
+            "ko": "더워"
+          },
+          {
+            "id": "u8-l1-03",
+            "es": "Hace frío",
+            "ko": "추워"
+          },
+          {
+            "id": "u8-l1-04",
+            "es": "Hace sol",
+            "ko": "해가 나"
+          },
+          {
+            "id": "u8-l1-05",
+            "es": "Hace viento",
+            "ko": "바람이 불어"
+          },
+          {
+            "id": "u8-l1-06",
+            "es": "Hace buen tiempo",
+            "ko": "날씨가 좋아"
+          },
+          {
+            "id": "u8-l1-07",
+            "es": "Hace mal tiempo",
+            "ko": "날씨가 나빠"
+          },
+          {
+            "id": "u8-l1-08",
+            "es": "Llueve",
+            "ko": "비가 와",
+            "accept_es": [
+              "Está lloviendo"
+            ]
+          },
+          {
+            "id": "u8-l1-09",
+            "es": "Nieva",
+            "ko": "눈이 와",
+            "accept_es": [
+              "Está nevando"
+            ]
+          },
+          {
+            "id": "u8-l1-10",
+            "es": "Está nublado",
+            "ko": "흐려",
+            "note": "구름 낀 상태는 estar로 말합니다."
+          }
+        ]
+      },
+      {
+        "id": "u8-l2",
+        "title": "계절과 달",
+        "items": [
+          {
+            "id": "u8-l2-01",
+            "es": "la primavera",
+            "ko": "봄",
+            "accept_es": [
+              "primavera"
+            ]
+          },
+          {
+            "id": "u8-l2-02",
+            "es": "el verano",
+            "ko": "여름",
+            "accept_es": [
+              "verano"
+            ]
+          },
+          {
+            "id": "u8-l2-03",
+            "es": "el otoño",
+            "ko": "가을",
+            "accept_es": [
+              "otoño"
+            ]
+          },
+          {
+            "id": "u8-l2-04",
+            "es": "el invierno",
+            "ko": "겨울",
+            "accept_es": [
+              "invierno"
+            ]
+          },
+          {
+            "id": "u8-l2-05",
+            "es": "enero",
+            "ko": "1월",
+            "note": "달 이름도 소문자로 씁니다."
+          },
+          {
+            "id": "u8-l2-06",
+            "es": "julio",
+            "ko": "7월"
+          },
+          {
+            "id": "u8-l2-07",
+            "es": "diciembre",
+            "ko": "12월"
+          },
+          {
+            "id": "u8-l2-08",
+            "es": "En verano hace mucho calor",
+            "ko": "여름에는 아주 더워"
+          },
+          {
+            "id": "u8-l2-09",
+            "es": "Mi cumpleaños es en mayo",
+            "ko": "내 생일은 5월이야"
+          },
+          {
+            "id": "u8-l2-10",
+            "es": "¿Qué estación te gusta?",
+            "ko": "너는 어느 계절을 좋아해?",
+            "accept_es": [
+              "¿Qué estación te gusta más?"
+            ],
+            "note": "estación은 '계절'과 '역' 두 뜻입니다."
+          }
+        ]
+      },
+      {
+        "id": "u8-l3",
+        "title": "날씨 이야기",
+        "items": [
+          {
+            "id": "u8-l3-01",
+            "es": "Hoy hace mucho frío",
+            "ko": "오늘 아주 추워"
+          },
+          {
+            "id": "u8-l3-02",
+            "es": "Mañana va a llover",
+            "ko": "내일 비가 올 거야"
+          },
+          {
+            "id": "u8-l3-03",
+            "es": "En agosto hace calor en Madrid",
+            "ko": "마드리드는 8월에 더워",
+            "accept_es": [
+              "En Madrid hace calor en agosto"
+            ]
+          },
+          {
+            "id": "u8-l3-04",
+            "es": "Me gusta el invierno",
+            "ko": "나는 겨울을 좋아해"
+          },
+          {
+            "id": "u8-l3-05",
+            "es": "No me gusta la lluvia",
+            "ko": "나는 비를 안 좋아해"
+          },
+          {
+            "id": "u8-l3-06",
+            "es": "¿Hace frío en Corea?",
+            "ko": "한국은 추워?"
+          },
+          {
+            "id": "u8-l3-07",
+            "es": "Sí, en invierno nieva",
+            "ko": "응, 겨울에는 눈이 와"
+          },
+          {
+            "id": "u8-l3-08",
+            "es": "Llevo un paraguas",
+            "ko": "나 우산 가지고 있어",
+            "accept_es": [
+              "Yo llevo un paraguas"
+            ]
+          },
+          {
+            "id": "u8-l3-09",
+            "es": "¡Qué calor!",
+            "ko": "정말 덥다!",
+            "note": "¡Qué + 명사!로 감탄을 나타냅니다."
+          },
+          {
+            "id": "u8-l3-10",
+            "es": "Hace veinte grados",
+            "ko": "20도야",
+            "note": "기온은 hace ... grados로 말합니다."
+          }
+        ]
+      }
+    ]
   }
 ]
