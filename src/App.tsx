@@ -1,34 +1,47 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import Chat from './Chat'
 import { lessons, units, type ExerciseType, type Item, type Lesson } from './content'
 import LessonView from './LessonView'
+import Settings from './Settings'
+import { SCENARIOS, parsePracticeItems, practiceSystem, vocabulary, type AiItem, type Scenario } from './lib/ai'
 import { lessonStates, lessonXp, localDate, shownStreak, touchStreak } from './lib/game'
+import { DEFAULT_MODEL, FAILURE_TEXT, KEY_STORAGE, generateJson, type GeminiFailure } from './lib/gemini'
+import { normalize } from './lib/grade'
 import type { Session } from './lib/lesson'
 import { canRecognize, pickVoice, type Voice } from './lib/speech'
 import { dueIds, missItem, registerItems, reviewCard, upcomingIds } from './lib/srs'
-import { STATE_KEY, load, save, type State } from './lib/state'
+import { STATE_KEY, initialState, load, save, type State } from './lib/state'
 
-type Kind = 'lesson' | 'review' | 'practice'
+type Kind = 'lesson' | 'review' | 'practice' | 'ai'
 type Screen =
   | { name: 'home' }
-  | { name: 'study'; kind: Kind; items: Item[]; lesson?: Lesson }
-  | { name: 'result'; kind: Kind; title: string; session: Session; xp: number; streak: number }
+  | { name: 'study'; kind: Kind; items: Item[]; lesson?: Lesson; source?: Lesson }
+  | { name: 'result'; kind: Kind; title: string; session: Session; xp: number; streak: number; aiItems?: AiItem[]; saved?: boolean }
+  | { name: 'settings' }
+  | { name: 'chat'; scenario: Scenario }
+  | { name: 'ai'; lesson: Lesson; error?: GeminiFailure | 'few' }
 
-const itemById = new Map(lessons.flatMap((l) => l.items).map((i) => [i.id, i]))
-const known = (id: string) => itemById.has(id)
+const curriculum = lessons.flatMap((l) => l.items)
 
 // localStorage can throw when site data is blocked; then every save reports failure.
-function storage(): Pick<Storage, 'getItem' | 'setItem'> {
+function storage(): Pick<Storage, 'getItem' | 'setItem' | 'removeItem'> {
   try {
     window.localStorage.getItem(STATE_KEY)
     return window.localStorage
   } catch {
-    return { getItem: () => null, setItem: () => { throw new Error('storage unavailable') } }
+    const fail = () => { throw new Error('storage unavailable') }
+    return { getItem: () => null, setItem: fail, removeItem: fail }
   }
 }
 
 const BASE_TYPES: ExerciseType[] = ['choice_es_ko', 'choice_ko_es', 'assemble', 'translate']
 
-const DONE_TITLE: Record<Kind, string> = { lesson: '레슨을 마쳤습니다', review: '복습을 마쳤습니다', practice: '연습을 마쳤습니다' }
+const DONE_TITLE: Record<Kind, string> = {
+  lesson: '레슨을 마쳤습니다',
+  review: '복습을 마쳤습니다',
+  practice: '연습을 마쳤습니다',
+  ai: 'AI 연습을 마쳤습니다',
+}
 
 export default function App() {
   const [boot] = useState(() => load(storage()))
@@ -38,6 +51,9 @@ export default function App() {
   const [screen, setScreen] = useState<Screen>({ name: 'home' })
   const [voice, setVoice] = useState<Voice | undefined>(undefined) // undefined while voices load
   const [micBlocked, setMicBlocked] = useState(false)
+  const [apiKey, setApiKey] = useState(() => storage().getItem(KEY_STORAGE) ?? '')
+  const [online, setOnline] = useState(navigator.onLine)
+  const aiRequest = useRef(0)
 
   useEffect(() => {
     pickVoice().then(setVoice)
@@ -49,13 +65,25 @@ export default function App() {
     navigator.storage?.persist?.().catch(() => {})
     const onStorage = (e: StorageEvent) => {
       if (e.key === STATE_KEY) setState(load(storage()).state)
+      if (e.key === KEY_STORAGE) setApiKey(e.newValue ?? '')
     }
+    const onLine = () => setOnline(navigator.onLine)
     window.addEventListener('storage', onStorage)
-    return () => window.removeEventListener('storage', onStorage)
+    window.addEventListener('online', onLine)
+    window.addEventListener('offline', onLine)
+    return () => {
+      window.removeEventListener('storage', onStorage)
+      window.removeEventListener('online', onLine)
+      window.removeEventListener('offline', onLine)
+    }
   }, [])
 
   const today = localDate(new Date())
   const audioOn = state.settings.audio
+  const model = state.settings.geminiModel || DEFAULT_MODEL
+  const aiReady = !!apiKey && online
+  const itemById = new Map<string, Item>([...curriculum, ...state.aiItems].map((i) => [i.id, i]))
+  const known = (id: string) => itemById.has(id)
   // Checked when a session starts, so going offline mid-session only affects the next one.
   const available: ExerciseType[] = [
     ...BASE_TYPES,
@@ -79,13 +107,94 @@ export default function App() {
     </>
   )
 
+  async function startAi(lesson: Lesson) {
+    const id = ++aiRequest.current
+    setScreen({ name: 'ai', lesson })
+    const r = await generateJson({
+      key: apiKey,
+      model,
+      system: practiceSystem(vocabulary(lesson.id, state.completedLessons)),
+      turns: [{ role: 'user', text: 'Write the 8 sentences now.' }],
+    })
+    if (id !== aiRequest.current) return // the learner left or started another request
+    if (!r.ok) return setScreen({ name: 'ai', lesson, error: r.error })
+    const existing = new Set([...curriculum, ...state.aiItems].map((i) => normalize(i.es)))
+    const items = parsePracticeItems(r.value, lesson.id, existing)
+    if (items.length < 3) return setScreen({ name: 'ai', lesson, error: 'few' })
+    setScreen({ name: 'study', kind: 'ai', items, source: lesson })
+  }
+
+  const goHome = () => {
+    aiRequest.current++
+    setScreen({ name: 'home' })
+  }
+
+  if (screen.name === 'settings') {
+    return (
+      <Settings
+        settings={state.settings}
+        apiKey={apiKey}
+        aiCount={state.aiItems.length}
+        onSaveKey={(k) => {
+          try {
+            storage().setItem(KEY_STORAGE, k)
+            setApiKey(k)
+            return true
+          } catch {
+            return false
+          }
+        }}
+        onDeleteKey={() => {
+          try {
+            storage().removeItem(KEY_STORAGE)
+          } catch {
+            // nothing stored to remove
+          }
+          setApiKey('')
+        }}
+        onSettings={(patch) => setState((s) => ({ ...s, settings: { ...s.settings, ...patch } }))}
+        onDeleteAi={() =>
+          setState((s) => {
+            const ids = new Set(s.aiItems.map((i) => i.id))
+            return { ...s, aiItems: [], cards: Object.fromEntries(Object.entries(s.cards).filter(([id]) => !ids.has(id))) }
+          })
+        }
+        onReset={() => setState((s) => ({ ...initialState(), settings: s.settings }))}
+        onBack={goHome}
+      />
+    )
+  }
+
+  if (screen.name === 'chat') {
+    return <Chat scenario={screen.scenario} apiKey={apiKey} model={model} voice={voice ?? null} onBack={goHome} />
+  }
+
+  if (screen.name === 'ai') {
+    const { lesson, error } = screen
+    return (
+      <main className="page result">
+        <p className="result-lesson">{lesson.title}</p>
+        <h1>AI 연습</h1>
+        {!error && <p role="status">배운 단어로 새 문장을 만드는 중입니다.</p>}
+        {error && (
+          <p role="alert">{error === 'few' ? '쓸 만한 문장을 충분히 받지 못했습니다. 다시 시도하세요.' : FAILURE_TEXT[error].message}</p>
+        )}
+        {error && (error === 'few' || FAILURE_TEXT[error].retry) && (
+          <button className="primary" onClick={() => startAi(lesson)}>다시 시도</button>
+        )}
+        <button className="secondary" onClick={goHome}>홈으로</button>
+      </main>
+    )
+  }
+
   if (screen.name === 'study') {
-    const { kind, items, lesson } = screen
+    const { kind, items, lesson, source } = screen
     const learned = lessons.filter((l) => l === lesson || state.completedLessons.includes(l.id)).flatMap((l) => l.items)
+    const pool = [...learned, ...items.filter((i) => !learned.includes(i))]
     return (
       <LessonView
         items={items}
-        pool={learned}
+        pool={pool}
         available={available}
         voice={voice ?? null}
         onMicBlocked={() => setMicBlocked(true)}
@@ -94,8 +203,12 @@ export default function App() {
           if (kind === 'lesson' && !correct) setState((s) => ({ ...s, cards: missItem(s.cards, id, today) }))
           if (kind === 'review') setState((s) => ({ ...s, cards: { ...s.cards, [id]: reviewCard(s.cards[id], correct, today) } }))
         }}
-        onExit={() => setScreen({ name: 'home' })}
+        onExit={goHome}
         onFinish={(session) => {
+          if (kind === 'ai') {
+            const title = `${source!.title} AI 연습`
+            return setScreen({ name: 'result', kind, title, session, xp: 0, streak: 0, aiItems: items as AiItem[] })
+          }
           const firstTime = !!lesson && !state.completedLessons.includes(lesson.id)
           const xp = lesson ? lessonXp(firstTime, session.firstWrong === 0) : 5
           setState((s) => ({
@@ -113,19 +226,36 @@ export default function App() {
   }
 
   if (screen.name === 'result') {
-    const { graded, firstWrong } = screen.session
+    const { graded, firstWrong, } = screen.session
     const rate = graded ? Math.round(((graded - firstWrong) / graded) * 100) : 100
+    const ai = screen.aiItems
+    function saveAi() {
+      setState((s) => {
+        const have = new Set(s.aiItems.map((i) => normalize(i.es)))
+        const fresh = ai!.filter((i) => !have.has(normalize(i.es)))
+        return { ...s, aiItems: [...s.aiItems, ...fresh], cards: registerItems(s.cards, fresh.map((i) => i.id), today) }
+      })
+      if (screen.name === 'result') setScreen({ ...screen, saved: true })
+    }
     return (
       <main className="page result">
         {banners}
         <p className="result-lesson">{screen.title}</p>
         <h1>{DONE_TITLE[screen.kind]}</h1>
-        <p className="result-xp">+{screen.xp} XP</p>
+        {!ai && <p className="result-xp">+{screen.xp} XP</p>}
         <p>
           정답률 {rate}%{firstWrong === 0 ? ', 모두 맞혔습니다.' : `, ${firstWrong}문제를 틀렸습니다.`}
         </p>
-        <p className="muted">연속 학습 {screen.streak}일째입니다.</p>
-        <button className="primary" autoFocus onClick={() => setScreen({ name: 'home' })}>
+        {!ai && <p className="muted">연속 학습 {screen.streak}일째입니다.</p>}
+        {ai && (
+          <>
+            <p className="muted">AI가 만든 문장은 XP와 연속 학습에 들어가지 않습니다. 저장하면 내일부터 복습에 나옵니다.</p>
+            <button className="secondary" onClick={saveAi} disabled={screen.saved}>
+              {screen.saved ? '복습에 저장했습니다' : `문장 ${ai.length}개 복습에 저장`}
+            </button>
+          </>
+        )}
+        <button className="primary" autoFocus onClick={goHome}>
           홈으로
         </button>
       </main>
@@ -146,6 +276,9 @@ export default function App() {
           <div><dt>연속</dt><dd>{shownStreak(state.streak, today)}일</dd></div>
           <div><dt>XP</dt><dd>{state.xp}</dd></div>
         </dl>
+        <button type="button" className="link" onClick={() => setScreen({ name: 'settings' })}>
+          설정
+        </button>
       </header>
 
       {audioOn && voice === null && <p className="voice-note muted">이 기기에 스페인어 음성이 없어 듣기 문제는 내지 않습니다.</p>}
@@ -167,6 +300,28 @@ export default function App() {
           <button className="secondary" onClick={() => study('practice', ahead)}>미리 연습</button>
         </section>
       )}
+
+      <section className="talk" aria-labelledby="talk-title">
+        <h2 id="talk-title">대화 연습</h2>
+        {aiReady ? (
+          <div className="talk-list">
+            {SCENARIOS.map((s) => (
+              <button key={s.id} type="button" className="secondary" onClick={() => setScreen({ name: 'chat', scenario: s })}>
+                {s.title}
+              </button>
+            ))}
+          </div>
+        ) : (
+          <p className="muted">
+            {apiKey ? '오프라인에서는 쓸 수 없습니다.' : 'Gemini API 키를 넣으면 대화 연습과 레슨별 AI 연습을 쓸 수 있습니다. '}
+            {!apiKey && (
+              <button type="button" className="link inline" onClick={() => setScreen({ name: 'settings' })}>
+                키 넣기
+              </button>
+            )}
+          </p>
+        )}
+      </section>
 
       {units.map((u) => (
         <section key={u.id} className="unit" aria-labelledby={`${u.id}-title`}>
@@ -194,6 +349,11 @@ export default function App() {
                       <span className="node-title">{l.title}</span>
                       {st === 'done' && <span className="node-state">완료</span>}
                       {st === 'next' && <span className="start">{state.completedLessons.length ? '이어서 시작' : '시작'}</span>}
+                    </button>
+                  )}
+                  {st === 'done' && aiReady && (
+                    <button type="button" className="ai-btn" aria-label={`${l.title} AI 연습`} onClick={() => startAi(l)}>
+                      AI 연습
                     </button>
                   )}
                 </li>

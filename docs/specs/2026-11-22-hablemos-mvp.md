@@ -162,10 +162,12 @@ Item   { id, es, ko, accept_es?: string[], types?: ExerciseType[], note? }
 
 - 설정에 키가 없으면 AI 메뉴에는 안내만 보이고 나머지 기능은 그대로 동작한다. 오프라인이면 AI 메뉴를 비활성으로 표시한다.
 - 키는 진도 상태와 분리한 `localStorage` 항목(§10)에 저장한다. 설정 화면에 다음을 적는다: 이 브라우저에 저장되며 Gemini로 직접 전송된다, 같은 출처의 다른 페이지 스크립트가 읽을 수 있다, 이 앱 전용 키를 만들어 할당량 제한을 걸어 두기를 권한다. 키 삭제 버튼을 둔다.
-- 호출: `POST https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent`, 헤더 `x-goog-api-key`(URL 쿼리에 넣지 않음), `generationConfig.responseMimeType = application/json`과 `responseSchema`
+- 호출: `POST https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent`, 헤더 `x-goog-api-key`(URL 쿼리에 넣지 않음), `generationConfig.responseMimeType = application/json`, `maxOutputTokens = 2048`. 응답 형식은 시스템 지시에 적고 앱에서 검증한다. 스키마 필드(`responseSchema`·`responseJsonSchema`)와 thinking 설정은 보내지 않는다(문서 확인 범위 밖, 모델별로 거부될 수 있음).
+- 모델 ID는 URL 경로에 들어가므로 `^[a-z0-9][a-z0-9.-]{1,63}$`만 허용하고, 아니면 기본 모델로 호출한다.
 - 키는 오류 메시지·콘솔 로그·내보내기 파일에 넣지 않는다.
 - 모델 응답은 텍스트로만 렌더링한다(HTML 삽입 금지).
-- 모델 ID는 설정에서 바꿀 수 있다. 기본값은 구현 시점에 공식 모델 목록 문서에서 확인한 안정판 Flash 모델로 정한다.
+- 모델 ID는 설정에서 바꿀 수 있다. 기본값은 무료 키 기준 `gemini-3.5-flash-lite`(2026-11-22 Google 모델·가격 문서 기준 무료 등급, 안정판, thinking 기본값 최소). 추천 목록: `gemini-3.1-flash-lite`, `gemini-3.6-flash`, `gemini-3.8-flash`.
+- 무료 등급 조건(같은 날 문서 기준): 입력·출력 내용이 Google 제품 개선에 쓰일 수 있고, 호출 한도 숫자는 AI Studio에서만 보이며 프로젝트 단위로 걸리고 하루 한도는 미국 태평양 시간 자정에 초기화된다. 설정 화면에 앞의 두 가지를 알린다. 자동 재시도는 하지 않고, 대화는 응답을 받기 전에 다음 요청을 보내지 않는다.
 - 오류를 구분해 한국어로 알린다:
 
 | 경우 | 안내 | 재시도 버튼 |
@@ -180,7 +182,7 @@ Item   { id, es, ko, accept_es?: string[], types?: ExerciseType[], note? }
 
 - 진입점: 홈에서 완료한 레슨을 눌렀을 때 나오는 'AI 연습' 버튼
 - 입력: 그 레슨까지 완료한 레슨들의 `es`를 단어로 나눈 어휘 목록. 그 어휘만 써서 새 문장 8개를 요청한다.
-- 모델은 `{ es, ko, accept_es? }`만 만든다. id·유형·출처는 앱이 정한다: `id = ai-<uuid>`, `sourceLessonId`, `types = choice_es_ko, choice_ko_es, assemble, translate`(음성이 있으면 `listen_choice`, `dictation` 추가)
+- 모델은 `{ es, ko, accept_es? }`만 만든다. id·유형·출처는 앱이 정한다: `id = ai-<uuid>`, `sourceLessonId`, `types = choice_es_ko, choice_ko_es, listen_choice, assemble, translate, dictation`(음성 유형은 실행할 때 기기 조건으로 거른다. 발음을 확인하지 않은 문장이라 `speak`는 넣지 않는다)
 - 검증: 문자열이 비어 있지 않음, `es` 12단어·100자 이하, `ko` 60자 이하, `accept_es` 5개 이하, 기존 항목과 정규화한 `es`가 같으면 버림. 유효 항목이 3개 미만이면 세션을 만들지 않고 알린다.
 - 오답 보기는 §5 규칙대로 학습한 항목에서 뽑는다.
 - 생성 항목에는 "AI 생성"을 표시한다. XP·스트릭에 영향이 없다.
@@ -311,3 +313,4 @@ State {
 ## 17. 변경 기록
 
 - 2026-11-22: M2 구현 뒤 사용자 결정으로 하트를 뺐다. 상태 스키마를 v2로 올리고 v1의 `hearts`는 읽을 때 지운다. §16의 하트 관련 반영 내역은 당시 기록으로 남긴다.
+- 2026-11-22: M5에서 Gemini 무료 키 기준으로 기본 모델과 호출 방식을 정했다(§9). Google 문서가 AI Studio로 옮겨졌고 새 Interactions API를 "새 프로젝트 권장"으로 소개하지만, `generateContent`는 레퍼런스에 남아 있고 폐지 공지가 없어 그대로 쓴다. 실제 키로 브라우저 직접 호출(CORS)이 되는지는 사용자 확인이 남았다.

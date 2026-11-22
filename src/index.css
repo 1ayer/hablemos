@@ -75,6 +75,7 @@ p { margin: 0; }
 }
 .review-bar.quiet { background: none; padding: 0; }
 .review-bar .primary, .secondary { min-height: 44px; padding: 0 18px; }
+.review-bar button { flex: none; white-space: nowrap; }
 .secondary {
   border: 1.5px solid var(--field); border-radius: var(--radius); background: var(--surface); font-weight: 600;
 }
@@ -230,3 +231,47 @@ p { margin: 0; }
 .result-lesson { color: var(--muted); }
 .result-xp { font-size: 1.4rem; font-weight: 700; color: var(--accent); }
 .result .primary { margin-top: 18px; }
+
+/* Home additions */
+.home-top .link { margin-left: 4px; }
+.node { display: flex; align-items: center; gap: 8px; }
+.node > button:first-child, .node > .node-row { flex: 1; }
+.ai-btn {
+  flex: none; min-height: 40px; padding: 0 12px; border: 1.5px solid var(--field); border-radius: 10px;
+  background: var(--surface); font-size: 0.9rem; font-weight: 600;
+}
+.talk { margin-bottom: 32px; }
+.talk h2 { margin: 0 0 10px; font-size: 1.2rem; }
+.talk-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.link.inline { min-height: 0; color: var(--accent); font-weight: 600; }
+.secondary:disabled { color: var(--muted); cursor: default; }
+.secondary.danger { color: var(--bad); border-color: var(--bad); }
+
+/* Settings and chat share a simple top bar */
+.sub-top { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+.sub-top h1 { margin: 0; font-size: 1.3rem; }
+.settings section { margin-bottom: 32px; display: flex; flex-direction: column; gap: 10px; }
+.settings h2 { margin: 0; font-size: 1.1rem; }
+.settings a { color: var(--accent); }
+.field-row { display: flex; gap: 8px; }
+.field-row .answer { flex: 1; min-width: 0; font-size: 1rem; }
+.field-row .primary, .field-row .secondary { min-height: 48px; padding: 0 16px; flex: none; }
+.key-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.key-row .secondary { min-height: 44px; padding: 0 14px; }
+.fine { margin: 0; padding-left: 1.1em; color: var(--muted); font-size: 0.9rem; display: grid; gap: 4px; }
+.check { display: flex; align-items: center; gap: 10px; min-height: 44px; }
+.check input { width: 20px; height: 20px; accent-color: var(--accent); }
+.danger-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.danger-row .secondary { min-height: 44px; padding: 0 14px; }
+
+.chat { display: flex; flex-direction: column; }
+.messages { flex: 1; display: flex; flex-direction: column; gap: 12px; padding-bottom: 16px; }
+.msg { max-width: 85%; padding: 10px 14px; border-radius: 14px; display: flex; flex-direction: column; gap: 2px; }
+.msg.model { align-self: flex-start; background: var(--surface); border: 1.5px solid var(--rule); }
+.msg.user { align-self: flex-end; background: var(--accent-soft); }
+.msg-es { font-weight: 600; }
+.msg-ko { color: var(--muted); font-size: 0.92rem; }
+.msg .link { align-self: flex-start; min-height: 32px; font-size: 0.85rem; }
+.fix { margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--field); font-size: 0.92rem; }
+.composer { display: flex; flex-direction: column; gap: 8px; position: sticky; bottom: 0; background: var(--bg); padding: 8px 0 4px; }
+.chat-full { display: flex; flex-direction: column; gap: 10px; }
