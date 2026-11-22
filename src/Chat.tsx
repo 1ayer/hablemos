@@ -71,6 +71,7 @@ export default function Chat({ scenario, apiKey, model, voice, onBack }: Props) 
   function insert(ch: string) {
     const el = inputRef.current!
     el.setRangeText(ch, el.selectionStart ?? el.value.length, el.selectionEnd ?? el.value.length, 'end')
+    el.focus() // the field may have lost focus before the tap; keep typing where the letter went
     setInput(el.value)
   }
 

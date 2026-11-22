@@ -147,6 +147,7 @@ export default function LessonView({ items, pool, available, voice, requeue, onF
   function insert(ch: string) {
     const el = inputRef.current!
     el.setRangeText(ch, el.selectionStart ?? el.value.length, el.selectionEnd ?? el.value.length, 'end')
+    el.focus() // the field may have lost focus before the tap; keep typing where the letter went
     setText(el.value)
   }
 
