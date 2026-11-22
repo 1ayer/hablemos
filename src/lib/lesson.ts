@@ -45,11 +45,15 @@ export function distractors(item: Item, pool: Item[], n: number, rand: Rand): It
   return picked
 }
 
+// A capital on the sentence's first tile would reveal the first word.
+// shortcut: also lowercases a sentence-initial proper noun; add a flag if content starts with one.
+const tileWords = (es: string) => tokens(es).map((w, i) => (i === 0 ? w[0].toLowerCase() + w.slice(1) : w))
+
 function tilesFor(item: Item, pool: Item[], rand: Rand): string[] {
-  const words = tokens(item.es)
+  const words = tileWords(item.es)
   const seen = new Set(words.map(normalize))
   const extra: string[] = []
-  for (const w of shuffle(pool.filter((p) => p.id !== item.id).flatMap((p) => tokens(p.es)), rand)) {
+  for (const w of shuffle(pool.filter((p) => p.id !== item.id).flatMap((p) => tileWords(p.es)), rand)) {
     if (extra.length === 3) break
     if (seen.has(normalize(w))) continue
     seen.add(normalize(w))

@@ -35,12 +35,10 @@ export default function App() {
     const rate = graded ? Math.round(((graded - firstWrong) / graded) * 100) : 100
     return (
       <main className="page result">
-        <h1>레슨 완료</h1>
         <p className="result-lesson">{screen.lesson.title}</p>
-        <p className="result-rate">
-          정답률 <strong>{rate}%</strong>
-        </p>
-        <p>{firstWrong === 0 ? '첫 시도에 모두 맞혔습니다.' : `처음에 ${firstWrong}문제를 틀렸습니다.`}</p>
+        <h1>레슨을 마쳤습니다</h1>
+        <p className="result-rate">정답률 {rate}%</p>
+        <p className="muted">{firstWrong === 0 ? '처음 풀 때 모두 맞혔습니다.' : `처음 풀 때 ${firstWrong}문제를 틀렸습니다.`}</p>
         <button className="primary" autoFocus onClick={() => setScreen({ name: 'home' })}>
           홈으로
         </button>
@@ -48,22 +46,33 @@ export default function App() {
     )
   }
 
+  const next = lessons.find((l) => !completed.includes(l.id))
+
   return (
     <main className="page">
-      <h1 className="brand">hablemos</h1>
+      <header className="home-top">
+        <span className="brand">hablemos</span>
+      </header>
       {units.map((u) => (
-        <section key={u.id} className="unit">
-          <h2>{u.title}</h2>
-          <p className="unit-desc">{u.description}</p>
+        <section key={u.id} className="unit" aria-labelledby={`${u.id}-title`}>
+          <h2 id={`${u.id}-title`}>{u.title}</h2>
+          <p className="muted">{u.description}</p>
           <ol className="path">
-            {u.lessons.map((l) => (
-              <li key={l.id}>
-                <button className="lesson-node" onClick={() => setScreen({ name: 'lesson', lesson: l })}>
-                  <span>{l.title}</span>
-                  {completed.includes(l.id) && <span className="done">완료</span>}
-                </button>
-              </li>
-            ))}
+            {u.lessons.map((l) => {
+              const state = completed.includes(l.id) ? 'done' : l === next ? 'next' : 'open'
+              return (
+                <li key={l.id} className={`node ${state}`}>
+                  <button onClick={() => setScreen({ name: 'lesson', lesson: l })}>
+                    <span className="dot" aria-hidden="true">
+                      <span className="ring">{state === 'done' ? '✓' : ''}</span>
+                    </span>
+                    <span className="node-title">{l.title}</span>
+                    {state === 'done' && <span className="node-state">완료</span>}
+                    {state === 'next' && <span className="start">{completed.length ? '이어서 시작' : '시작'}</span>}
+                  </button>
+                </li>
+              )
+            })}
           </ol>
         </section>
       ))}

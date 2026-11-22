@@ -43,6 +43,11 @@ describe('buildLesson', () => {
       }
     }
   })
+  it('gives no capital-letter hint on assemble tiles', () => {
+    const ex = buildLesson([pool[2]], pool, ['assemble'], seeded(2))[0]
+    expect(ex.tiles).toContain('muy')
+    expect(ex.tiles!.filter((t) => /^[A-ZÁÉÍÓÚ¿¡]/.test(t))).toEqual([])
+  })
   it('never uses assemble for single-word items', () => {
     for (let s = 1; s < 50; s++) {
       const ex = buildLesson([pool[3]], pool, M1, seeded(s))
