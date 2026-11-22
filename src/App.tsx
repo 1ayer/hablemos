@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react'
-import { lessons, units, type Lesson } from './content'
+import { lessons, units, type Item, type Lesson } from './content'
 import LessonView from './LessonView'
-import {
-  lessonStates, lessonXp, localDate, loseHeart, nextHeartIn, refillHearts, shownStreak, touchStreak,
-} from './lib/game'
+import { lessonStates, lessonXp, localDate, shownStreak, touchStreak } from './lib/game'
 import type { Session } from './lib/lesson'
+import { dueIds, missItem, registerItems, reviewCard, upcomingIds } from './lib/srs'
 import { STATE_KEY, load, save, type State } from './lib/state'
 
+type Kind = 'lesson' | 'review' | 'practice'
 type Screen =
   | { name: 'home' }
-  | { name: 'lesson'; lesson: Lesson; heartsOn: boolean }
-  | { name: 'result'; lesson: Lesson; session: Session; xp: number; streak: number }
-  | { name: 'failed'; lesson: Lesson }
+  | { name: 'study'; kind: Kind; items: Item[]; lesson?: Lesson }
+  | { name: 'result'; kind: Kind; title: string; session: Session; xp: number; streak: number }
+
+const itemById = new Map(lessons.flatMap((l) => l.items).map((i) => [i.id, i]))
+const known = (id: string) => itemById.has(id)
 
 // localStorage can throw when site data is blocked; then every save reports failure.
 function storage(): Pick<Storage, 'getItem' | 'setItem'> {
@@ -23,11 +25,7 @@ function storage(): Pick<Storage, 'getItem' | 'setItem'> {
   }
 }
 
-const formatWait = (ms: number) => {
-  const m = Math.ceil(ms / 60000)
-  if (m < 60) return `${m}분`
-  return m % 60 ? `${Math.floor(m / 60)}시간 ${m % 60}분` : `${m / 60}시간`
-}
+const DONE_TITLE: Record<Kind, string> = { lesson: '레슨을 마쳤습니다', review: '복습을 마쳤습니다', practice: '연습을 마쳤습니다' }
 
 export default function App() {
   const [boot] = useState(() => load(storage()))
@@ -47,10 +45,7 @@ export default function App() {
     return () => window.removeEventListener('storage', onStorage)
   }, [])
 
-  const now = Date.now()
-  const today = localDate(new Date(now))
-  const hearts = refillHearts(state.hearts, now)
-  const wait = nextHeartIn(state.hearts, now)
+  const today = localDate(new Date())
 
   const banners = (
     <>
@@ -68,29 +63,31 @@ export default function App() {
     </>
   )
 
-  if (screen.name === 'lesson') {
-    const { lesson, heartsOn } = screen
-    const pool = lessons.filter((l) => l === lesson || state.completedLessons.includes(l.id)).flatMap((l) => l.items)
+  if (screen.name === 'study') {
+    const { kind, items, lesson } = screen
+    const learned = lessons.filter((l) => l === lesson || state.completedLessons.includes(l.id)).flatMap((l) => l.items)
     return (
       <LessonView
-        key={lesson.id}
-        lesson={lesson}
-        pool={pool}
-        heartsLeft={heartsOn ? hearts.count : null}
-        onWrong={() => setState((s) => ({ ...s, hearts: loseHeart(s.hearts, Date.now()) }))}
-        onFail={() => setScreen({ name: 'failed', lesson })}
+        items={items}
+        pool={learned}
+        requeue={kind === 'lesson'}
+        onFirstAnswer={(id, correct) => {
+          if (kind === 'lesson' && !correct) setState((s) => ({ ...s, cards: missItem(s.cards, id, today) }))
+          if (kind === 'review') setState((s) => ({ ...s, cards: { ...s.cards, [id]: reviewCard(s.cards[id], correct, today) } }))
+        }}
         onExit={() => setScreen({ name: 'home' })}
         onFinish={(session) => {
-          const firstTime = !state.completedLessons.includes(lesson.id)
-          const xp = lessonXp(firstTime, session.firstWrong === 0)
-          const streak = touchStreak(state.streak, today)
+          const firstTime = !!lesson && !state.completedLessons.includes(lesson.id)
+          const xp = lesson ? lessonXp(firstTime, session.firstWrong === 0) : 5
           setState((s) => ({
             ...s,
             xp: s.xp + xp,
             streak: touchStreak(s.streak, today),
             completedLessons: firstTime ? [...s.completedLessons, lesson.id] : s.completedLessons,
+            cards: lesson ? registerItems(s.cards, lesson.items.map((i) => i.id), today) : s.cards,
           }))
-          setScreen({ name: 'result', lesson, session, xp, streak: streak.count })
+          const title = lesson?.title ?? (kind === 'review' ? '오늘의 복습' : '미리 연습')
+          setScreen({ name: 'result', kind, title, session, xp, streak: touchStreak(state.streak, today).count })
         }}
       />
     )
@@ -102,10 +99,12 @@ export default function App() {
     return (
       <main className="page result">
         {banners}
-        <p className="result-lesson">{screen.lesson.title}</p>
-        <h1>레슨을 마쳤습니다</h1>
+        <p className="result-lesson">{screen.title}</p>
+        <h1>{DONE_TITLE[screen.kind]}</h1>
         <p className="result-xp">+{screen.xp} XP</p>
-        <p>정답률 {rate}%{firstWrong === 0 ? ', 처음 풀 때 모두 맞혔습니다.' : `, 처음 풀 때 ${firstWrong}문제를 틀렸습니다.`}</p>
+        <p>
+          정답률 {rate}%{firstWrong === 0 ? ', 모두 맞혔습니다.' : `, ${firstWrong}문제를 틀렸습니다.`}
+        </p>
         <p className="muted">연속 학습 {screen.streak}일째입니다.</p>
         <button className="primary" autoFocus onClick={() => setScreen({ name: 'home' })}>
           홈으로
@@ -114,30 +113,10 @@ export default function App() {
     )
   }
 
-  if (screen.name === 'failed') {
-    return (
-      <main className="page result">
-        {banners}
-        <p className="result-lesson">{screen.lesson.title}</p>
-        <h1>하트를 모두 써서 레슨을 끝냈습니다</h1>
-        <p className="muted">
-          {wait === null ? '하트가 다시 찼습니다.' : `${formatWait(wait)} 뒤에 하트 1개가 찹니다. 하트는 4시간마다 1개씩 찹니다.`}
-        </p>
-        <button className="primary" autoFocus onClick={() => setScreen({ name: 'home' })}>
-          홈으로
-        </button>
-      </main>
-    )
-  }
-
   const states = lessonStates(lessons, state.completedLessons)
-  const noCards = Object.keys(state.cards).length === 0
-  const blocked = hearts.count === 0 && !noCards
-
-  function start(lesson: Lesson) {
-    // With no review cards yet there is no way to earn hearts back, so the limit is lifted (spec §6).
-    setScreen({ name: 'lesson', lesson, heartsOn: hearts.count > 0 })
-  }
+  const due = dueIds(state.cards, today, known, Infinity)
+  const ahead = due.length ? [] : upcomingIds(state.cards, known)
+  const study = (kind: Kind, ids: string[]) => setScreen({ name: 'study', kind, items: ids.map((id) => itemById.get(id)!) })
 
   return (
     <main className="page">
@@ -146,17 +125,25 @@ export default function App() {
         <span className="brand">hablemos</span>
         <dl className="stats">
           <div><dt>연속</dt><dd>{shownStreak(state.streak, today)}일</dd></div>
-          <div><dt>하트</dt><dd>{hearts.count}</dd></div>
           <div><dt>XP</dt><dd>{state.xp}</dd></div>
         </dl>
       </header>
-      {wait !== null && (
-        <p className="heart-wait muted">
-          {blocked
-            ? `하트가 없어 새 레슨을 시작할 수 없습니다. ${formatWait(wait)} 뒤에 1개가 찹니다.`
-            : `다음 하트까지 ${formatWait(wait)}`}
-        </p>
+
+      {due.length > 0 && (
+        <section className="review-bar" aria-label="복습">
+          <p>
+            오늘 복습할 문장 <strong>{due.length}개</strong>
+          </p>
+          <button className="primary" onClick={() => study('review', due.slice(0, 15))}>복습</button>
+        </section>
       )}
+      {due.length === 0 && ahead.length > 0 && (
+        <section className="review-bar quiet" aria-label="복습">
+          <p className="muted">오늘 복습할 문장이 없습니다.</p>
+          <button className="secondary" onClick={() => study('practice', ahead)}>미리 연습</button>
+        </section>
+      )}
+
       {units.map((u) => (
         <section key={u.id} className="unit" aria-labelledby={`${u.id}-title`}>
           <h2 id={`${u.id}-title`}>{u.title}</h2>
@@ -178,7 +165,7 @@ export default function App() {
                       <span className="node-state">잠김</span>
                     </div>
                   ) : (
-                    <button onClick={() => !blocked && start(l)} aria-disabled={blocked}>
+                    <button onClick={() => setScreen({ name: 'study', kind: 'lesson', items: l.items, lesson: l })}>
                       {ring}
                       <span className="node-title">{l.title}</span>
                       {st === 'done' && <span className="node-state">완료</span>}

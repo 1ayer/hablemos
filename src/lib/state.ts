@@ -5,14 +5,12 @@ export const STATE_KEY = 'hablemos-state'
 export const BACKUP_KEY = 'hablemos-backup'
 
 export type Card = { reps: number; ease: number; interval: number; due: string }
-export type Hearts = { count: number; refillStart: number | null }
 export type Streak = { count: number; lastDate: string | null }
 
 export type State = {
-  version: 1
+  version: 2
   xp: number
   streak: Streak
-  hearts: Hearts
   completedLessons: string[]
   cards: Record<string, Card>
   aiItems: (Item & { sourceLessonId: string })[]
@@ -20,10 +18,9 @@ export type State = {
 }
 
 export const initialState = (): State => ({
-  version: 1,
+  version: 2,
   xp: 0,
   streak: { count: 0, lastDate: null },
-  hearts: { count: 5, refillStart: null },
   completedLessons: [],
   cards: {},
   aiItems: [],
@@ -51,12 +48,21 @@ function isAiItem(i: unknown): boolean {
   )
 }
 
+/** Older saved versions, converted step by step to the current one. */
+function upgrade(x: unknown): unknown {
+  if (isObj(x) && x.version === 1) {
+    const { hearts: _dropped, ...rest } = x // v2 removed hearts
+    return { ...rest, version: 2 }
+  }
+  return x
+}
+
 /** The one validator for both loading and (later) importing. Returns null if anything is off. */
-export function validate(x: unknown): State | null {
-  if (!isObj(x) || x.version !== 1 || !isInt(x.xp)) return null
-  const { streak: s, hearts: h, settings: st, cards } = x
+export function validate(input: unknown): State | null {
+  const x = upgrade(input)
+  if (!isObj(x) || x.version !== 2 || !isInt(x.xp)) return null
+  const { streak: s, settings: st, cards } = x
   if (!isObj(s) || !isInt(s.count) || !(s.lastDate === null || isDate(s.lastDate))) return null
-  if (!isObj(h) || !isInt(h.count, 0, 5) || !(h.refillStart === null || isInt(h.refillStart))) return null
   if (!isStrs(x.completedLessons)) return null
   if (!isObj(cards) || !Object.values(cards).every(isCard)) return null
   if (!Array.isArray(x.aiItems) || !x.aiItems.every(isAiItem)) return null

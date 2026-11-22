@@ -1,11 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { lessons } from '../content'
-import {
-  REFILL_MS, daysBetween, gainHeart, lessonStates, lessonXp, localDate, loseHeart, nextHeartIn, refillHearts,
-  shownStreak, touchStreak,
-} from './game'
-
-const T0 = 1_800_000_000_000
+import { daysBetween, lessonStates, lessonXp, localDate, shownStreak, touchStreak } from './game'
 
 describe('dates', () => {
   it('formats the local calendar date', () => {
@@ -17,34 +12,6 @@ describe('dates', () => {
     expect(daysBetween('2026-12-31', '2027-01-01')).toBe(1)
     expect(daysBetween('2026-03-07', '2026-03-09')).toBe(2)
     expect(daysBetween('2026-03-09', '2026-03-07')).toBe(-2)
-  })
-})
-
-describe('hearts', () => {
-  it('starts the refill clock only when dropping from full', () => {
-    const a = loseHeart({ count: 5, refillStart: null }, T0)
-    expect(a).toEqual({ count: 4, refillStart: T0 })
-    const b = loseHeart(a, T0 + 1000)
-    expect(b).toEqual({ count: 3, refillStart: T0 }) // a second loss does not reset the clock
-  })
-  it('refills one heart per 4 hours and keeps the remainder', () => {
-    const h = { count: 2, refillStart: T0 }
-    expect(refillHearts(h, T0 + REFILL_MS - 1)).toEqual(h)
-    expect(refillHearts(h, T0 + REFILL_MS + 5)).toEqual({ count: 3, refillStart: T0 + REFILL_MS })
-    expect(refillHearts(h, T0 + 3 * REFILL_MS)).toEqual({ count: 5, refillStart: null })
-    expect(refillHearts(h, T0 + 99 * REFILL_MS)).toEqual({ count: 5, refillStart: null })
-  })
-  it('restarts the clock when the device time goes back', () => {
-    expect(refillHearts({ count: 1, refillStart: T0 }, T0 - 5000)).toEqual({ count: 1, refillStart: T0 - 5000 })
-  })
-  it('never goes below zero or above five', () => {
-    expect(loseHeart({ count: 0, refillStart: T0 }, T0)).toEqual({ count: 0, refillStart: T0 })
-    expect(gainHeart({ count: 4, refillStart: T0 }, T0)).toEqual({ count: 5, refillStart: null })
-    expect(gainHeart({ count: 5, refillStart: null }, T0)).toEqual({ count: 5, refillStart: null })
-  })
-  it('reports time to the next heart', () => {
-    expect(nextHeartIn({ count: 3, refillStart: T0 }, T0 + 1000)).toBe(REFILL_MS - 1000)
-    expect(nextHeartIn({ count: 5, refillStart: null }, T0)).toBeNull()
   })
 })
 

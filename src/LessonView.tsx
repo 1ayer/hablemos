@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
-import type { ExerciseType, Item, Lesson } from './content'
+import type { ExerciseType, Item } from './content'
 import { gradeTyped, type Grade } from './lib/grade'
 import { answer, answersOf, buildLesson, currentExercise, isDone, startSession, type Exercise, type Session } from './lib/lesson'
 
@@ -15,18 +15,19 @@ const PROMPT: Partial<Record<ExerciseType, string>> = {
 }
 
 type Props = {
-  lesson: Lesson
+  items: Item[]
+  /** Learned items used for wrong options and extra tiles. */
   pool: Item[]
-  /** null when the heart limit is lifted for this lesson. */
-  heartsLeft: number | null
-  onWrong: () => void
-  onFail: () => void
+  /** Lessons repeat first-try misses at the end; reviews do not. */
+  requeue: boolean
+  /** Called once per item on its first try, when it is checked (so leaving early still counts). */
+  onFirstAnswer: (itemId: string, correct: boolean) => void
   onExit: () => void
   onFinish: (s: Session) => void
 }
 
-export default function LessonView({ lesson, pool, heartsLeft, onWrong, onFail, onExit, onFinish }: Props) {
-  const [session, setSession] = useState(() => startSession(buildLesson(lesson.items, pool, AVAILABLE)))
+export default function LessonView({ items, pool, requeue, onFirstAnswer, onExit, onFinish }: Props) {
+  const [session, setSession] = useState(() => startSession(buildLesson(items, pool, AVAILABLE)))
   const [picked, setPicked] = useState<string | null>(null) // choice: option item id
   const [built, setBuilt] = useState<number[]>([]) // assemble: tile indexes in order
   const [text, setText] = useState('')
@@ -38,21 +39,16 @@ export default function LessonView({ lesson, pool, heartsLeft, onWrong, onFail, 
   const ready = ex.options ? picked !== null : ex.tiles ? built.length > 0 : text.trim() !== ''
   const esPrompt = ex.type === 'choice_es_ko'
 
-  // Only a first-try miss costs a heart, charged at check time so leaving the lesson can't dodge it.
-  const costsHeart = !!result && !result.correct && !ex.retry && heartsLeft !== null
-  const outOfHearts = costsHeart && heartsLeft === 0
-
   function check() {
     const g = ex.options
       ? { correct: picked === ex.item.id }
       : gradeTyped(ex.tiles ? built.map((i) => ex.tiles![i]).join(' ') : text, answersOf(ex.item))
     setResult(g)
-    if (!g.correct && !ex.retry && heartsLeft !== null) onWrong()
+    if (!ex.retry) onFirstAnswer(ex.item.id, g.correct)
   }
 
   function next() {
-    if (outOfHearts) return onFail()
-    const s = answer(session, result!.correct)
+    const s = answer(session, result!.correct, requeue)
     setPicked(null)
     setBuilt([])
     setText('')
@@ -104,8 +100,8 @@ export default function LessonView({ lesson, pool, heartsLeft, onWrong, onFail, 
         <button
           type="button"
           className="exit"
-          aria-label="레슨 나가기"
-          onClick={() => confirm('레슨을 그만둘까요? 진행한 내용은 저장되지 않습니다.') && onExit()}
+          aria-label="나가기"
+          onClick={() => confirm('그만둘까요? 진행한 내용은 저장되지 않습니다.') && onExit()}
         >
           ✕
         </button>
@@ -115,7 +111,6 @@ export default function LessonView({ lesson, pool, heartsLeft, onWrong, onFail, 
         <span className="count">
           {done}/{total}
         </span>
-        <span className="lesson-hearts">{heartsLeft === null ? '하트 제한 없음' : `하트 ${heartsLeft}`}</span>
       </header>
 
       <form className="lesson-body" onSubmit={submit}>
@@ -208,12 +203,11 @@ export default function LessonView({ lesson, pool, heartsLeft, onWrong, onFail, 
                   {ex.item.ko}
                 </p>
                 {ex.item.note && <p className="note">{ex.item.note}</p>}
-                {costsHeart && <p className="heart-loss">{outOfHearts ? '하트를 모두 썼습니다.' : `하트 1개를 잃었습니다. ${heartsLeft}개 남았습니다.`}</p>}
               </div>
             )}
           </div>
           <button ref={primaryRef} type="submit" className="primary" aria-disabled={!result && !ready}>
-            {outOfHearts ? '레슨 끝내기' : result ? '계속' : '확인'}
+            {result ? '계속' : '확인'}
           </button>
         </footer>
       </form>

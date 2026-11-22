@@ -69,7 +69,15 @@ p { margin: 0; }
 .stats div { display: flex; gap: 4px; align-items: baseline; }
 .stats dt { color: var(--muted); font-size: 0.85rem; }
 .stats dd { margin: 0; font-weight: 700; }
-.heart-wait { margin: -12px 0 24px; font-size: 0.92rem; }
+.review-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin: 0 0 28px; padding: 12px 14px; border-radius: var(--radius); background: var(--accent-soft);
+}
+.review-bar.quiet { background: none; padding: 0; }
+.review-bar .primary, .secondary { min-height: 44px; padding: 0 18px; }
+.secondary {
+  border: 1.5px solid var(--field); border-radius: var(--radius); background: var(--surface); font-weight: 600;
+}
 .banner {
   display: flex; gap: 12px; align-items: center; justify-content: space-between;
   margin-bottom: 20px; padding: 12px 14px; border-radius: var(--radius);
@@ -90,8 +98,6 @@ p { margin: 0; }
   background: none; border: none; border-radius: var(--radius); text-align: left;
 }
 .node button:hover .node-title { text-decoration: underline; text-underline-offset: 3px; }
-.node button[aria-disabled='true'] { cursor: default; }
-.node button[aria-disabled='true']:hover .node-title { text-decoration: none; }
 .node.locked .node-title { color: var(--muted); }
 .node.locked .ring { background: var(--rule); border-color: var(--rule); }
 .dot { flex: none; width: 44px; display: grid; place-items: center; }
@@ -119,9 +125,8 @@ p { margin: 0; }
 }
 .progress { flex: 1; height: 10px; border-radius: 5px; background: var(--rule); overflow: hidden; }
 .progress > div { height: 100%; background: var(--accent); transition: width 0.25s ease-out; }
-.count, .lesson-hearts { color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.count { color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .count { min-width: 3.2em; text-align: right; }
-.heart-loss { color: var(--bad); font-weight: 600; font-size: 0.95rem; }
 
 .lesson-body { flex: 1; display: flex; flex-direction: column; gap: 24px; }
 .question { display: flex; flex-direction: column; gap: 4px; }

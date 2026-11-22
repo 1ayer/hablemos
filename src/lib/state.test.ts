@@ -19,15 +19,22 @@ describe('validate', () => {
     expect(validate(JSON.parse(JSON.stringify(s)))).toEqual(s)
   })
   it.each([
-    ['newer version', { version: 2 }],
+    ['newer version', { version: 3 }],
     ['negative xp', { xp: -1 }],
-    ['six hearts', { hearts: { count: 6, refillStart: null } }],
     ['bad date', { streak: { count: 1, lastDate: '22/11/2026' } }],
     ['bad card', { cards: { a: { reps: 0, ease: 9, interval: 0, due: '2026-11-23' } } }],
     ['lessons not strings', { completedLessons: [1] }],
     ['missing settings', { settings: undefined }],
   ])('rejects %s', (_, patch) => {
     expect(validate({ ...initialState(), ...patch })).toBeNull()
+  })
+})
+
+describe('upgrade', () => {
+  it('reads a v1 save by dropping hearts', () => {
+    const { version: _v, ...rest } = initialState()
+    const v1 = { ...rest, version: 1, xp: 30, hearts: { count: 2, refillStart: 5 } }
+    expect(validate(v1)).toEqual({ ...initialState(), xp: 30 })
   })
 })
 

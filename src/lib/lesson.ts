@@ -91,12 +91,15 @@ export const startSession = (queue: Exercise[]): Session => ({ queue, pos: 0, gr
 export const currentExercise = (s: Session): Exercise | undefined => s.queue[s.pos]
 export const isDone = (s: Session) => s.pos >= s.queue.length
 
-/** A first-try miss is repeated once at the end; a missed retry is not repeated again. */
-export function answer(s: Session, correct: boolean): Session {
+/**
+ * A first-try miss is repeated once at the end (lessons only; reviews pass requeue=false).
+ * A missed retry is not repeated again.
+ */
+export function answer(s: Session, correct: boolean, requeue = true): Session {
   const ex = s.queue[s.pos]
   if (ex.retry) return { ...s, pos: s.pos + 1 }
   return {
-    queue: correct ? s.queue : [...s.queue, { ...ex, retry: true }],
+    queue: correct || !requeue ? s.queue : [...s.queue, { ...ex, retry: true }],
     pos: s.pos + 1,
     graded: s.graded + 1,
     firstWrong: s.firstWrong + (correct ? 0 : 1),
